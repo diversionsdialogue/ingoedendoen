@@ -1,0 +1,682 @@
+[
+ {
+  "from": "/volwassen/wakeup-light-ervaringsverhaal/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/senior/griep/",
+  "to": "/senior/"
+ },
+ {
+  "from": "/tiener/acne-behandeling-verschillende-opties-rij/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/volwassen/wake-uplight-ervaringsverhaal/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/gezonde-leefstijl-zo-bereik-hem/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/griep-voorkomen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/afvallen-zwangerschap/",
+  "to": "/baby/"
+ },
+ {
+  "from": "/volwassen/buikvet-verbranden/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/allergie-kinderen/",
+  "to": "/dossier/allergie/"
+ },
+ {
+  "from": "/vragen_over/waarom-heeft-zin-deeltijdvegetarier-worden/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/vragen_over/welk-dieet-kan-ik-ondanks-mijn-intoleranties-volgen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/jouw-verhaal/jouw-leven-nieuwe-start/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/kind/peuters-fop/",
+  "to": "/kind/"
+ },
+ {
+  "from": "/volwassen/meer-zwangerschapscomplicaties-soa/",
+  "to": "/dossier/soa/"
+ },
+ {
+  "from": "/vragen_over/moet-voedingssupplementen-nemen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/vragen_over/lukt-af-vallen-ligt-mijn-medicijnen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/vitamines-betere-weerstand/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/kankeronderzoek-stap-verder/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/beginnen-met-hardlopen/",
+  "to": "/dossier/hardlopen/"
+ },
+ {
+  "from": "/tiener/nieuw-expert-voeding-en-bewegen/",
+  "to": "/kind/"
+ },
+ {
+  "from": "/volwassen/omega-3-goed-voor-je/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/senior/de-menopauze/",
+  "to": "/dossier/nachtzweten/"
+ },
+ {
+  "from": "/volwassen/gezichtsverzorging-voor-hem-en-haar/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/test-en-checklist/hartslagcheck-gezondheid/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/volwassen/zwangerschapsdiabetes/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/regelmaat-voor-kinderen-belangrijker-dan-slaapduur/",
+  "to": "/kind/"
+ },
+ {
+  "from": "/jouw-verhaal/de-stem-als-visitekaartje/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/volwassen/slaapapneu/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/vragen_over/onze-experts/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/jouw-verhaal/zonder-een-steuntje-de-rug-ben-ik-verloren/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/jouw-verhaal/ik-heb-dagen-dat-ik-liever-thuis-blijf/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/jouw-verhaal/men-neme-een-hulp-driewieler/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/volwassen/onvruchtbaar/",
+  "to": "/dossier/onvruchtbaar/"
+ },
+ {
+  "from": "/uitgelicht/hartje-zomer-sliep-ik-onder-een-dikke-deken/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/jouw-verhaal/door-het-ongeluk-alles-wat-er-toe-doet-waardevoller-geworden/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/test-en-checklist/online-test-heb-ik-ouderdomssuiker/",
+  "to": "/volwassen/eerste-symptomen-ouderdomssuiker/"
+ },
+ {
+  "from": "/volwassen/anti-rimpelcreme/",
+  "to": "/dossier/rimpls/"
+ },
+ {
+  "from": "/volwassen/niet-zwanger-worden/",
+  "to": "/dossier/onvruchtbaar/"
+ },
+ {
+  "from": "/volwassen/je-gebit-gezond-houden/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/jouw-verhaal/column-rij-jij-rij-ik-nog/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/baby/gebruiksvriendelijkheid-bloeddrukmeters-onder-de-loep/",
+  "to": "/dossier/bloeddruk/"
+ },
+ {
+  "from": "/volwassen/wat-is-als/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/wake-up-light/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/lekker-slapen-zo-doe-je-dat/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/burn-out/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/wintertijd-de-invloed-op-je-biologische-klok/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/koolhydraatarm-dieet-voor-mensen-met-overgewicht/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/vijf-tips-tegen-de-winterdip/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/van-superfood-naar-gewoon-gezond/",
+  "to": "/tiener/"
+ },
+ {
+  "from": "/tiener/tips-meer-energie/",
+  "to": "/tiener/"
+ },
+ {
+  "from": "/tiener/afvallen-zonder-dieet/",
+  "to": "/tiener/"
+ },
+ {
+  "from": "/volwassen/bluetooth-hartslagmeter/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/volwassen/koffie-gezond-of-ongezond/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/5-redenen-waarom-het-je-niet-lukt-om-af-te-vallen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/gps-sporthorloge/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/volwassen/fitness-doe-het-zelf/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/hooikoorts-domper-op-lentedag/",
+  "to": "/dossier/allergie/"
+ },
+ {
+  "from": "/volwassen/8-tips-beginnende-hardloper/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/volwassen/roland-over-hartslaghorloges/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/volwassen/matthieu-over-hartslaghorloges/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/volwassen/hartslaghorloges/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/volwassen/zonnebrandmiddeltest/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/maak-kennis-met-love-for-body-and-health/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/migraine-een-ondraaglijke-pijn/",
+  "to": "/dossier/migraine/"
+ },
+ {
+  "from": "/volwassen/meet-the-bloggers-vandaag-lotteslifestyle/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/bloggers-i-love-sundays/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/zo-maak-je-hardlopen-leuk/",
+  "to": "/dossier/hardlopen/"
+ },
+ {
+  "from": "/volwassen/fresh-friday-gezondheidsnieuws/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/de-herfst-5-redenen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/fresh-friday-vers-verassend-gezondheidsnieuws/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/stress-zo-ga-je-ermee-om/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/8-redenen-waarom-het-afvallen-niet-lukt/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/druk-leven-zo-blijf-jij-gezond-en-fit/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/een-opgeblazen-gevoel-zo-kom-je-er-vanaf/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/fresh-friday-vers-verrassend-gezondheidsnieuws/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/mindfulness-zo-zit-jij-lekkerder-in-je-vel/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/fresh-friday-vers-verrassend-gezondheidsnieuws-2/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/burn-out-voorkomen-zo/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/zo-krijg-jij-meer-zelfvertrouwen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/fresh-friday-vers-verrassend-gezondheidsnieuws-3/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/hoe-goed-is-detoxen-voor-je/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/fresh-friday-6/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/zo-kom-jij-de-feestdagen-door/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/fresh-friday-7-vers-verrassend-gezondheidsnieuws/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/waarom-goede-voornemens-bijna-altijd-mislukken/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/actie-aerosleep/",
+  "to": "/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/allergie-dossier/",
+  "to": "/dossier/allergie/"
+ },
+ {
+  "from": "/test-checklist/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/test-checklist/ouderdomssuikerziekte-doe-de-online-test/",
+  "to": "/volwassen/eerste-symptomen-ouderdomssuiker/"
+ },
+ {
+  "from": "/vraag-het-aan-2/",
+  "to": "/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/nachtzweten-dossier/",
+  "to": "/dossier/nachtzweten/"
+ },
+ {
+  "from": "/test-checklist/nachtzweet-test/",
+  "to": "/dossier/nachtzweten/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/puisten-dossier/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/soa-dossier/",
+  "to": "/dossier/soa/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/onvruchtbaar-dossier/",
+  "to": "/dossier/onvruchtbaar/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/rimpel-dossier/",
+  "to": "/dossier/rimpls/"
+ },
+ {
+  "from": "/confirmation-hartslag-sporten/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/tijdelijk/",
+  "to": "/"
+ },
+ {
+  "from": "/puistjes-quick-scan-mee-eters-normale-en-droge-huid/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/puistjes-quick-scan-vette-huid/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/puistjes-quick-scan-normaal-droogpuist/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/confirmation-hartslag-sporten-40-55/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/confirmation-hartslag-sporten-60-75/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/hartslag-dossier/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/transfer/",
+  "to": "/"
+ },
+ {
+  "from": "/transfer/morning-after-pil/",
+  "to": "/dossier/soa/"
+ },
+ {
+  "from": "/transfer/morning-after-pil-drogist/",
+  "to": "/dossier/soa/"
+ },
+ {
+  "from": "/transfer/soa-test/",
+  "to": "/dossier/soa/"
+ },
+ {
+  "from": "/poepie-quiz-1/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/poepie-quiz-2/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/poepie-quiz-3/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/kennisquiz-spijsvertering/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/migraine-dossier/",
+  "to": "/dossier/migraine/"
+ },
+ {
+  "from": "/test/",
+  "to": "/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/nagel-dossier/",
+  "to": "/dossier/nagels/"
+ },
+ {
+  "from": "/test-checklist/huiduitslag-test/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/test-checklist/huiduitslag-verhelpen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/helaas/",
+  "to": "/"
+ },
+ {
+  "from": "/relatiegeluk-a2/",
+  "to": "/"
+ },
+ {
+  "from": "/relatiegeluk-b2/",
+  "to": "/"
+ },
+ {
+  "from": "/relatiegeluk-a1/",
+  "to": "/"
+ },
+ {
+  "from": "/relatiegeluk-b1/",
+  "to": "/"
+ },
+ {
+  "from": "/partner-vinden-test/",
+  "to": "/"
+ },
+ {
+  "from": "/test-2/",
+  "to": "/"
+ },
+ {
+  "from": "/sleutel-tot-relatiegeluk-one/",
+  "to": "/"
+ },
+ {
+  "from": "/sleutel-tot-relatiegeluk-a/",
+  "to": "/"
+ },
+ {
+  "from": "/relatiegeluk-vervolg-b/",
+  "to": "/"
+ },
+ {
+  "from": "/relatiegeluk-ook-voor-jou/",
+  "to": "/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/hardlopen-dossier/",
+  "to": "/dossier/hardlopen/"
+ },
+ {
+  "from": "/klantbehoefte-enquete/",
+  "to": "/"
+ },
+ {
+  "from": "/bedankpagina-enquete/",
+  "to": "/"
+ },
+ {
+  "from": "/goeden-doen-dossiers/bloeddruk-dossier/",
+  "to": "/dossier/bloeddruk/"
+ },
+ {
+  "from": "/checkout/",
+  "to": "/"
+ },
+ {
+  "from": "/order-received/",
+  "to": "/"
+ },
+ {
+  "from": "/order-failed/",
+  "to": "/"
+ },
+ {
+  "from": "/account/",
+  "to": "/"
+ },
+ {
+  "from": "/leaderboard/",
+  "to": "/"
+ },
+ {
+  "from": "/leaderboard-2/",
+  "to": "/"
+ },
+ {
+  "from": "/test-en-checklist/hartslagcheck-sporten/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/test-en-checklist/test-puistjes-de-baas-wat-werkt-voor-jou/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/infographics/",
+  "to": "/infographics/alles-nachtzweten-infographic/"
+ },
+ {
+  "from": "/courses/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/terms-conditions/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/category/baby/",
+  "to": "/baby/"
+ },
+ {
+  "from": "/category/dossier/",
+  "to": "/dossier/"
+ },
+ {
+  "from": "/category/hardlopen/",
+  "to": "/dossier/hardlopen/"
+ },
+ {
+  "from": "/category/hartslag/",
+  "to": "/dossier/hartslag/"
+ },
+ {
+  "from": "/category/jouw-verhaal/",
+  "to": "/jouw-verhaal/"
+ },
+ {
+  "from": "/category/kind/",
+  "to": "/kind/"
+ },
+ {
+  "from": "/category/migraine/",
+  "to": "/dossier/migraine/"
+ },
+ {
+  "from": "/category/nachtzweten/",
+  "to": "/dossier/nachtzweten/"
+ },
+ {
+  "from": "/category/nagels/",
+  "to": "/dossier/nagels/"
+ },
+ {
+  "from": "/category/onvruchtbaar/",
+  "to": "/dossier/onvruchtbaar/"
+ },
+ {
+  "from": "/category/puisten/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/category/rimpls/",
+  "to": "/dossier/rimpls/"
+ },
+ {
+  "from": "/category/senior/",
+  "to": "/senior/"
+ },
+ {
+  "from": "/category/soa/",
+  "to": "/dossier/soa/"
+ },
+ {
+  "from": "/category/test-en-checklist/",
+  "to": "/test-en-checklist/"
+ },
+ {
+  "from": "/category/tiener/",
+  "to": "/tiener/"
+ },
+ {
+  "from": "/category/uitgelicht/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/category/uncategorized/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/category/volwassen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/category/vragen_over/",
+  "to": "/vragen_over/"
+ },
+ {
+  "from": "/category/allergie/",
+  "to": "/dossier/allergie/"
+ },
+ {
+  "from": "/category/bloeddruk/",
+  "to": "/dossier/bloeddruk/"
+ },
+ {
+  "from": "/category/overgangsconsulente/",
+  "to": "/vragen_over/overgangsconsulente/"
+ },
+ {
+  "from": "/category/voeding-bewegen/",
+  "to": "/vragen_over/voeding-bewegen/"
+ },
+ {
+  "from": "/category/bol/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/category/overgang/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/category/vaginaal/",
+  "to": "/artikelen-overzicht/"
+ }
+]

@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import { getPosts, getCategories } from '../lib/content.js';
+import { fmtDate, catColor, primaryCat } from '../lib/ui.js';
+
+const posts = await getPosts();
+const categories = await getCategories();
+
+const TABS = ['volwassen', 'tiener', 'senior', 'kind', 'baby'].map((s) => categories.find((c) => c.slug === s)).filter(Boolean);
+const SECTIONS = [
+  ['volwassen', 'senior'],
+  ['tiener', 'jouw-verhaal'],
+].map((col) => col.map((slug) => ({
+  cat: categories.find((c) => c.slug === slug),
+  items: posts.filter((p) => p.categories.includes(slug)).slice(0, 5),
+})).filter((s) => s.cat));
+---
+<Base
+  title="Alle artikelen"
+  description="Blader door alle gezondheidsartikelen van InGoedendoen: voeding, beweging, huid, hart en meer."
+  canonicalPath="/artikelen-overzicht/"
+>
+  <div class="page-head">
+    <div class="page-head-inner">
+      <nav class="breadcrumb" aria-label="Kruimelpad" style="margin-bottom: 20px;">
+        <a href="/">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Home
+        </a>
+        <span class="sep">/</span>
+        <span class="current">Alle artikelen</span>
+      </nav>
+      <div class="page-title-row">
+        <h1>Alle artikelen</h1>
+        <div class="search-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-text-tertiary); flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="search-input" type="search" placeholder="Zoek een artikel…" aria-label="Zoeken" />
+        </div>
+      </div>
+      <p class="page-intro">
+        Van hartslag tot huid en van voeding tot nachtrust: hier vind je al onze artikelen.
+        Filter op doelgroep of zoek direct op onderwerp.
+      </p>
+      <div class="filter-tabs">
+        <a href="/artikelen-overzicht/" class="active">Alle</a>
+        {TABS.map((c) => <a href={c.path}>{c.name}</a>)}
+        <span class="count">{posts.length} artikelen</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:40px; padding-bottom:64px;">
+    <div id="search-results" hidden>
+      <p class="page-intro" id="search-count"></p>
+      <div id="search-list" style="max-width:840px;"></div>
+    </div>
+    <div id="archive-default" class="archive-cols">
+      <div class="archive-col-l">
+        {SECTIONS[0].map(({ cat, items }) => (
+          <section>
+            <div class="section-head" style="margin-bottom:16px;">
+              <span class="igd-section-label">{cat.name}</span>
+              <a class="section-more" href={cat.path}>
+                Meer verhalen
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </a>
+            </div>
+            {items.map((p) => (
+              <a class="art-row" href={p.path}>
+                <div class="art-thumb">{p.image && <img src={p.image} alt="" loading="lazy" width="160" height="120" />}</div>
+                <div>
+                  <div class="card-meta" style="margin-bottom:0;">
+                    <span class="cat-tag" style={`color:${catColor(cat.slug)}`}>{cat.name}</span>
+                    <span class="meta-dot">·</span>
+                    <span class="meta-txt">{fmtDate(p.date)} · {p.readingTime} min</span>
+                  </div>
+                  <h4>{p.title}</h4>
+                </div>
+              </a>
+            ))}
+          </section>
+        ))}
+      </div>
+      <div class="archive-divider"></div>
+      <div class="archive-col-r">
+        {SECTIONS[1].map(({ cat, items }) => (
+          <section>
+            <div class="section-head" style="margin-bottom:16px;">
+              <span class="igd-section-label">{cat.name}</span>
+              <a class="section-more" href={cat.path}>
+                Meer verhalen
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </a>
+            </div>
+            {items.map((p) => (
+              <a class="art-row" href={p.path}>
+                <div class="art-thumb">{p.image && <img src={p.image} alt="" loading="lazy" width="160" height="120" />}</div>
+                <div>
+                  <div class="card-meta" style="margin-bottom:0;">
+                    <span class="cat-tag" style={`color:${catColor(cat.slug)}`}>{cat.name}</span>
+                    <span class="meta-dot">·</span>
+                    <span class="meta-txt">{fmtDate(p.date)} · {p.readingTime} min</span>
+                  </div>
+                  <h4>{p.title}</h4>
+                </div>
+              </a>
+            ))}
+          </section>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Client-side zoeken over een slanke index (titel + pad + categorie).
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const list = document.getElementById('search-list');
+    const count = document.getElementById('search-count');
+    const defaultView = document.getElementById('archive-default');
+    let index = null;
+
+    async function ensureIndex() {
+      if (!index) {
+        const res = await fetch('/search-index.json');
+        index = await res.json();
+      }
+      return index;
+    }
+
+    let t;
+    input.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(async () => {
+        const q = input.value.trim().toLowerCase();
+        if (!q) {
+          results.hidden = true;
+          defaultView.hidden = false;
+          return;
+        }
+        const idx = await ensureIndex();
+        const hits = idx.filter((e) => e.t.toLowerCase().includes(q) || e.c.toLowerCase().includes(q)).slice(0, 30);
+        count.innerHTML = hits.length
+          ? `${hits.length} resultaten voor "<strong>${input.value}</strong>"`
+          : `Geen artikelen gevonden voor "<strong>${input.value}</strong>"`;
+        list.innerHTML = hits
+          .map((e) => `<a class="list-item" href="${e.p}"><div><div class="card-meta" style="margin-bottom:2px;"><span class="meta-txt">${e.c}</span></div><h3>${e.t}</h3></div></a>`)
+          .join('');
+        results.hidden = false;
+        defaultView.hidden = true;
+      }, 150);
+    });
+  </script>
+</Base>

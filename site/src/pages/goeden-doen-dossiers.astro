@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import ThemaTile from '../components/ThemaTile.astro';
+import { getPosts, getCategories } from '../lib/content.js';
+import { popularPosts } from '../lib/ui.js';
+
+const posts = await getPosts();
+const categories = await getCategories();
+
+const dossiers = categories
+  .filter((c) => c.parent === 'dossier' && c.count > 0)
+  .sort((a, b) => b.count - a.count)
+  .map((c) => ({
+    href: c.path,
+    label: c.name,
+    count: c.count,
+    image: popularPosts(posts.filter((p) => p.categories.includes(c.slug) && p.image), 1)[0]?.image || null,
+  }));
+---
+<Base
+  title="Goeden doen dossiers"
+  description="Onze dossiers duiken diep in één gezondheidsonderwerp: hartslag, puisten, allergie, nachtzweten en meer."
+  canonicalPath="/goeden-doen-dossiers/"
+>
+  <div class="page-head">
+    <div class="page-head-inner">
+      <nav class="breadcrumb" aria-label="Kruimelpad" style="margin-bottom: 20px;">
+        <a href="/">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Home
+        </a>
+        <span class="sep">/</span>
+        <span class="current">Dossiers</span>
+      </nav>
+      <div class="page-title-row">
+        <h1>Goeden doen dossiers</h1>
+      </div>
+      <p class="page-intro" style="padding-bottom:28px;">
+        In onze dossiers duiken we diep in één onderwerp. Alle artikelen, tips en
+        calculators over dat thema, overzichtelijk bij elkaar.
+      </p>
+    </div>
+  </div>
+  <div class="wrap" style="padding-top:40px; padding-bottom:64px;">
+    <div class="thema-grid" style="grid-template-columns: repeat(4, 1fr);">
+      {dossiers.map((d) => <ThemaTile {...d} />)}
+    </div>
+  </div>
+</Base>

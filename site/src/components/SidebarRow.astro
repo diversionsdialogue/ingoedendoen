@@ -1,0 +1,14 @@
+---
+import { fmtDate } from '../lib/ui.js';
+
+const { post } = Astro.props;
+---
+<a class="sb-row" href={post.path}>
+  <div class="sb-thumb">
+    {post.image && <img src={post.image} alt="" loading="lazy" width="136" height="104" />}
+  </div>
+  <div>
+    <h4>{post.title}</h4>
+    <span class="meta-txt">{fmtDate(post.date)} · {post.readingTime} min</span>
+  </div>
+</a>

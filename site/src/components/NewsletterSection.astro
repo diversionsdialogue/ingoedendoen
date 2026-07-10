@@ -1,0 +1,23 @@
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <span class="pill">Nieuwsbrief</span>
+    <h2>Iedere week de beste gezondheidstips</h2>
+    <p>Geen spam. Alleen content die je écht verder helpt.</p>
+    <form class="newsletter-form" data-newsletter>
+      <input type="email" name="email" placeholder="jouw@email.nl" required aria-label="E-mailadres" />
+      <button type="submit">Inschrijven</button>
+    </form>
+    <div class="newsletter-ok" hidden>✓ Gelukt! Je staat ingeschreven.</div>
+  </div>
+</section>
+<script>
+  // Nieuwsbriefprovider is nog niet gekoppeld; toon lokaal een bevestiging.
+  document.querySelectorAll('[data-newsletter]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.hidden = true;
+      const ok = form.parentElement.querySelector('.newsletter-ok');
+      if (ok) ok.hidden = false;
+    });
+  });
+</script>

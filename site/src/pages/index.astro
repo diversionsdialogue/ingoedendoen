@@ -1,0 +1,194 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import SidebarRow from '../components/SidebarRow.astro';
+import ThemaTile from '../components/ThemaTile.astro';
+import NewsletterSection from '../components/NewsletterSection.astro';
+import { getPosts, getCategories, getContent } from '../lib/content.js';
+import { catColor, fmtDate, primaryCat, popularPosts } from '../lib/ui.js';
+
+const posts = await getPosts();
+const categories = await getCategories();
+const { site } = await getContent();
+
+const withImage = posts.filter((p) => p.image);
+// Uitgelicht alleen als het ook recent is; anders gewoon het nieuwste artikel met beeld
+const hero = withImage.slice(0, 10).find((p) => p.featured) || withImage[0];
+const recent = posts.filter((p) => p !== hero).slice(0, 3);
+const heroCat = primaryCat(hero, categories);
+
+// Zijkolom: twee sterke thema's op basis van GSC-signaal
+const catImage = (slug) => popularPosts(posts.filter((p) => p.categories.includes(slug)), 1)[0]?.image || null;
+const sideTopics = ['hartslag', 'puisten'].map((slug) => ({
+  cat: categories.find((c) => c.slug === slug),
+  items: popularPosts(posts.filter((p) => p.categories.includes(slug)), 2),
+}));
+
+// Themategels: doelgroepen + dossiers
+const themaTiles = ['volwassen', 'tiener', 'senior', 'kind', 'baby']
+  .map((slug) => categories.find((c) => c.slug === slug))
+  .filter(Boolean)
+  .map((c) => ({ href: c.path, label: c.name, count: c.count, image: catImage(c.slug) }));
+
+// Donkere sectie: populairste dossierartikelen (o.a. de calculators)
+const dossierCats = categories.filter((c) => c.parent === 'dossier');
+const dossierPosts = popularPosts(posts.filter((p) => p.categories.some((s) => dossierCats.some((c) => c.slug === s))), 5);
+const darkFeatured = dossierPosts[0];
+const darkList = dossierPosts.slice(1);
+const featuredCat = primaryCat(darkFeatured, categories);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'InGoedendoen',
+  url: 'https://www.ingoedendoen.nl/',
+  description: site.description,
+  inLanguage: 'nl-NL',
+};
+---
+<Base title="InGoedendoen — Voor een gezond, fit en vrolijk leven" canonicalPath="/" ogImage={hero.image} jsonLd={jsonLd}>
+  <div class="wrap">
+    <div style="padding: 28px 0 0;">
+      <span class="igd-section-label">Uitgelicht</span>
+    </div>
+    <div class="home-cols">
+      <div class="home-main">
+        <div class="hero">
+          <div>
+            {heroCat && <a class="kicker" href={heroCat.path} style={`color:${catColor(heroCat.slug)}`}>{heroCat.name}</a>}
+            <h1><a href={hero.path}>{hero.title}</a></h1>
+            <p>{hero.excerpt}</p>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:24px;">
+              <div class="author-avatar" style="width:30px; height:30px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="author-name" style="font-size:0.8125rem;">{hero.author}</div>
+                <div class="meta-txt">{fmtDate(hero.date)} · {hero.readingTime} min lezen</div>
+              </div>
+            </div>
+            <a class="igd-btn" href={hero.path}>Lees artikel →</a>
+          </div>
+          <a class="hero-img" href={hero.path}>
+            <img src={hero.image} alt={hero.title} width="800" height="600" />
+          </a>
+        </div>
+        <div style="border-top:1px solid var(--color-border-default); margin: 4px 0 28px;"></div>
+        <div class="section-head">
+          <span class="igd-section-label">Recent</span>
+        </div>
+        <div class="recent-grid">
+          {recent.map((p) => <ArticleCard post={p} categories={categories} />)}
+        </div>
+      </div>
+      <div class="home-side">
+        {sideTopics.map(({ cat, items }) => (
+          <div style="margin-bottom: 28px;">
+            <div class="section-head">
+              <span class="igd-section-label">{cat.name}</span>
+              <a class="section-more" href={cat.path}>
+                Meer artikelen
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </a>
+            </div>
+            {items.map((p) => <SidebarRow post={p} />)}
+          </div>
+        ))}
+        <div class="brand-promo">
+          <div class="bp-logo"><em>In</em>Goedendoen</div>
+          <p>"Voor een gezond, fit en vrolijk leven."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="border-top:1px solid var(--color-border-default); padding: 40px 0 52px;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="igd-section-label">Thema's</span>
+        <a class="section-more" href="/artikelen-overzicht/">
+          Bekijk alle
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="thema-grid">
+        {themaTiles.map((t) => <ThemaTile {...t} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="dark-section">
+    <div class="wrap" style="padding:0;">
+      <div class="section-head" style="margin-bottom:28px;">
+        <span class="igd-section-label igd-section-label--light">Uit de dossiers</span>
+        <a class="section-more section-more--dark" href="/goeden-doen-dossiers/">
+          Bekijk alle dossiers
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="dark-cols">
+        <a class="dark-featured" href={darkFeatured.path}>
+          <div class="dark-featured-img">
+            {darkFeatured.image && <img src={darkFeatured.image} alt={darkFeatured.title} loading="lazy" width="720" height="450" />}
+          </div>
+          {featuredCat && <span class="cat-tag" style={`color:${catColor(featuredCat.slug)}`}>{featuredCat.name}</span>}
+          <h3>{darkFeatured.title}</h3>
+          <span class="dark-meta">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            {darkFeatured.readingTime} min lezen
+          </span>
+        </a>
+        <div class="dark-divider"></div>
+        <div>
+          {darkList.map((p) => (
+            <a class="dark-list-item" href={p.path}>
+              <div class="dark-list-thumb">
+                {p.image && <img src={p.image} alt="" loading="lazy" width="192" height="128" />}
+              </div>
+              <div>
+                <h4>{p.title}</h4>
+                <span class="dark-meta">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {p.readingTime} min lezen
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="overons">
+    <div class="wrap" style="padding:0;">
+      <div class="overons-grid">
+        <div class="overons-img">
+          <img src="/uploads/2023/06/nachtzweten-man-Ingoedendoen.png" alt="InGoedendoen" loading="lazy" width="800" height="600" />
+        </div>
+        <div>
+          <h2>Onze content is anders, omdat wij de lat hoger leggen</h2>
+          <p style="font-family:var(--font-sans); font-size:0.9375rem; line-height:1.7; color:var(--color-text-secondary);">
+            InGoedendoen is er voor mensen die genieten van het leven én bewust bezig zijn met hun gezondheid.
+            Geen ingewikkelde diëten of extreme schema's — gewoon slimmer leven.
+          </p>
+          <div class="overons-points">
+            <div class="overons-point">
+              <span class="nr">01</span>
+              <div><strong>Eerlijk en toegankelijk</strong><span>Wij schrijven zoals een goede vriend met je praat — zonder jargon, zonder oordeel. Gezonde tips voor echte mensen.</span></div>
+            </div>
+            <div class="overons-point">
+              <span class="nr">02</span>
+              <div><strong>Onafhankelijke redactie</strong><span>Onze inhoud wordt nooit beïnvloed door adverteerders. Wat wij schrijven, geloven we ook echt.</span></div>
+            </div>
+            <div class="overons-point">
+              <span class="nr">03</span>
+              <div><strong>Samenwerking met experts</strong><span>We werken samen met diëtisten, sportcoaches en huidtherapeuten voor de meest betrouwbare informatie.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <NewsletterSection />
+</Base>

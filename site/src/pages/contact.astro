@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Contact"
+  description="Neem contact op met de redactie van InGoedendoen: vragen, artikel-tips of samenwerkingen."
+  canonicalPath="/contact/"
+>
+  <div class="wrap" style="padding-top:40px; padding-bottom:72px;">
+    <nav class="breadcrumb" aria-label="Kruimelpad" style="margin-bottom: 32px;">
+      <a href="/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Home
+      </a>
+      <span class="sep">/</span>
+      <span class="current">Contact</span>
+    </nav>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h1>Neem contact op</h1>
+        <p>
+          Heb je een vraag, een tip voor een artikel of wil je samenwerken?
+          We horen graag van je. Kies hieronder het juiste adres of gebruik het formulier.
+        </p>
+        <div style="margin-bottom: 16px;">
+          <span class="igd-section-label">Contactgegevens</span>
+        </div>
+        <div class="contact-block">
+          <div class="lbl">Redactie</div>
+          <a href="mailto:redactie@ingoedendoen.nl">redactie@ingoedendoen.nl</a>
+        </div>
+        <div class="contact-block">
+          <div class="lbl">Artikel tips</div>
+          <a href="mailto:tips@ingoedendoen.nl">tips@ingoedendoen.nl</a>
+        </div>
+        <div class="contact-block">
+          <div class="lbl">Pers &amp; media</div>
+          <a href="mailto:pers@ingoedendoen.nl">pers@ingoedendoen.nl</a>
+        </div>
+        <div class="response-card">
+          <div class="response-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <strong>Reactietijd</strong>
+            <span>We reageren doorgaans binnen 2 werkdagen op berichten.</span>
+          </div>
+        </div>
+      </div>
+      <div class="archive-divider contact-divider"></div>
+      <div class="contact-form-col">
+        <form class="igd-form" id="contact-form">
+          <div class="igd-field">
+            <label for="cf-name">Naam</label>
+            <input id="cf-name" name="naam" type="text" required placeholder="Je naam" />
+          </div>
+          <div class="igd-field">
+            <label for="cf-email">E-mail</label>
+            <input id="cf-email" name="email" type="email" required placeholder="jouw@email.nl" />
+          </div>
+          <div class="igd-field">
+            <label for="cf-subject">Onderwerp</label>
+            <select id="cf-subject" name="onderwerp">
+              <option>Algemene vraag</option>
+              <option>Tip of idee voor een artikel</option>
+              <option>Samenwerking</option>
+              <option>Pers &amp; media</option>
+              <option>Overig</option>
+            </select>
+          </div>
+          <div class="igd-field">
+            <label for="cf-message">Bericht</label>
+            <textarea id="cf-message" name="bericht" rows="5" required placeholder="Waar kunnen we je mee helpen?"></textarea>
+          </div>
+          <button type="submit">Verstuur bericht</button>
+        </form>
+        <div class="form-ok" id="contact-ok" hidden>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-neutral-900)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="background:var(--color-lime-400); border-radius:50%; padding:12px; margin:0 auto;"><polyline points="20 6 9 17 4 12"/></svg>
+          <h3>Je e-mailprogramma is geopend</h3>
+          <p>Verstuur het voorbereide bericht om contact met ons op te nemen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Geen backend: het formulier opent een voorbereide e-mail naar de redactie.
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const subject = encodeURIComponent(`[ingoedendoen.nl] ${data.get('onderwerp')}`);
+      const body = encodeURIComponent(`Naam: ${data.get('naam')}\nE-mail: ${data.get('email')}\n\n${data.get('bericht')}`);
+      location.href = `mailto:redactie@ingoedendoen.nl?subject=${subject}&body=${body}`;
+      form.hidden = true;
+      document.getElementById('contact-ok').hidden = false;
+    });
+  </script>
+</Base>

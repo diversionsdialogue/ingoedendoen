@@ -1,0 +1,17 @@
+# dependencies & build-output
+node_modules/
+site/dist/
+site/.astro/
+studio/dist/
+
+# lokale omgeving (bevat project-id's; .env.example blijft wel in de repo)
+.env
+site/.env
+studio/.env
+
+# persoonlijke editor/agent-instellingen
+.claude/settings.local.json
+
+# OS
+Thumbs.db
+.DS_Store

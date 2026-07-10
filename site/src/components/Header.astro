@@ -1,0 +1,41 @@
+---
+import { getPosts } from '../lib/content.js';
+
+const posts = await getPosts();
+const ticker = posts.slice(0, 6).map((p) => ({ title: p.title, path: p.path }));
+const NAV = [
+  { label: 'Volwassen', path: '/volwassen/' },
+  { label: 'Tiener', path: '/tiener/' },
+  { label: 'Senior', path: '/senior/' },
+  { label: 'Dossiers', path: '/goeden-doen-dossiers/' },
+];
+const current = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="header-top">
+    <span class="header-tagline">Gezond, fit &amp; vrolijk leven</span>
+    <a class="brand" href="/">
+      <em>In</em>Goedendoen<sup>®</sup>
+    </a>
+    <div class="header-actions">
+      <a class="btn-pill" href="/contact/">Contact</a>
+    </div>
+  </div>
+  <div class="header-row2">
+    <div class="ticker-label">Nieuws</div>
+    <div class="ticker-window">
+      <div class="ticker-track">
+        {[...ticker, ...ticker].map((t) => <a class="ticker-item" href={t.path}>{t.title}</a>)}
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Hoofdnavigatie">
+      {NAV.map((n) => (
+        <a href={n.path} class={current.startsWith(n.path) ? 'active' : ''}>{n.label}</a>
+      ))}
+      <a href="/artikelen-overzicht/">
+        Alle artikelen
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>

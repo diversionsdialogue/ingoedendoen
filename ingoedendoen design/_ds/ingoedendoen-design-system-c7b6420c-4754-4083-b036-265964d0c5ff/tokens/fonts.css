@@ -1,0 +1,154 @@
+/* ============================================================
+   InGoedendoen – Web Font Declarations
+   Two optical-size pairs for Inter; STIX Two Text (variable) for serif.
+   Inter Text  (18pt) = body, ≤ 20px usage
+   Inter Display (28pt) = headings, 24px + usage
+   ============================================================ */
+
+/* ── Inter Text (18pt optical size) ───────────────────────── */
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Text";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_18pt-BoldItalic.ttf') format('truetype');
+}
+
+/* ── Inter Display (28pt optical size) ───────────────────── */
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: "Inter Display";
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/Inter_28pt-Black.ttf') format('truetype');
+}
+
+/* ── Cascadia Code (variable mono) ─────────────────────── */
+@font-face {
+  font-family: "Cascadia Code";
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/CascadiaCode-VariableFont_wght.ttf') format('truetype');
+}
+
+/* ── STIX Two Text (variable serif) ─────────────────────── */
+@font-face {
+  font-family: "STIX Two Text";
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/STIXTwoText-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: "STIX Two Text";
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+  src: url('../assets/fonts/STIXTwoText-Italic-VariableFont_wght.ttf') format('truetype');
+}

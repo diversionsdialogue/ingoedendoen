@@ -1,0 +1,283 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getContent, getPosts, getCategories } from '../lib/content.js';
+import { catColor, fmtDate, primaryCat, relatedPosts, popularPosts } from '../lib/ui.js';
+
+export async function getStaticPaths() {
+  const { entries } = await getContent();
+  const categories = await getCategories();
+  const paths = [];
+  const RESERVED = new Set(['/', '/contact/', '/artikelen-overzicht/', '/goeden-doen-dossiers/']);
+
+  for (const e of entries) {
+    if (RESERVED.has(e.path)) continue;
+    paths.push({ params: { slug: e.path.replace(/^\/|\/$/g, '') }, props: { view: 'entry', path: e.path } });
+  }
+  // Thema-archiefpagina's op /<categorie-pad>/
+  for (const c of categories) {
+    if (['uitgelicht', 'bol', 'uncategorized'].includes(c.slug)) continue;
+    if (RESERVED.has(c.path)) continue;
+    paths.push({ params: { slug: c.path.replace(/^\/|\/$/g, '') }, props: { view: 'category', path: c.path, catSlug: c.slug } });
+  }
+  return paths;
+}
+
+const { view, path, catSlug } = Astro.props;
+const { entries } = await getContent();
+const posts = await getPosts();
+const categories = await getCategories();
+
+const CAT_INTRO = {
+  hartslag: 'Alles over een gezonde hartslag: van hartslag in rust tot trainingszones, met handige calculators.',
+  puisten: 'Puistjes en acne: oorzaken, behandelingen en tips die echt werken.',
+  soa: "Eerlijke informatie over soa's: herkennen, testen en voorkomen.",
+  nachtzweten: 'Nachtzweten: oorzaken, oplossingen en tips voor drogere nachten.',
+  allergie: 'Allergieën herkennen en ermee omgaan, van hooikoorts tot voedselallergie.',
+  bloeddruk: 'Alles over bloeddruk: meten, begrijpen en gezond houden.',
+  migraine: 'Migraine: triggers, behandeling en leven met hoofdpijn.',
+  nagels: 'Wat je nagels vertellen over je gezondheid.',
+  onvruchtbaar: 'Vruchtbaarheid en zwanger worden: feiten, hulp en ervaringen.',
+  rimpls: 'Rimpels en huidveroudering: wat werkt echt?',
+  hardlopen: 'Hardlopen: beginnen, verbeteren en blessurevrij blijven.',
+  overgang: 'De overgang: klachten, tips en ervaringen.',
+  vaginaal: 'Vaginale klachten: oorzaken en oplossingen.',
+  volwassen: 'Gezondheidsartikelen voor volwassenen: van voeding en beweging tot huid en slaap.',
+  tiener: 'Gezondheid voor tieners: puistjes, sport, relaties en meer.',
+  senior: 'Gezond ouder worden: beweging, voeding en vitaliteit.',
+  kind: 'Gezondheid van kinderen: van slapen tot bewegen.',
+  baby: "Alles over de gezondheid van je baby.",
+  'jouw-verhaal': 'Persoonlijke verhalen van lezers over leven met een aandoening.',
+  dossier: 'Onze dossiers: diepgaande series over één gezondheidsonderwerp.',
+  vragen_over: 'Vragen van lezers, beantwoord door onze experts.',
+  'test-en-checklist': 'Tests en checklists om je gezondheid te checken.',
+  overgangsconsulente: 'Vragen aan de overgangsconsulente.',
+  'voeding-bewegen': 'Vragen over voeding en bewegen, beantwoord door onze expert.',
+};
+
+let pageData = {};
+
+if (view === 'entry') {
+  const entry = entries.find((e) => e.path === path);
+  const cat = primaryCat(entry, categories);
+  const related = entry.kind === 'post' ? relatedPosts(entry, posts, categories, 3) : [];
+  const aside = popularPosts(posts, 4, entry.path);
+  const hasCalc = entry.body.includes('igd-calculator');
+  const jsonLd = entry.kind === 'post'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: entry.title,
+        datePublished: entry.date,
+        author: { '@type': 'Organization', name: entry.author },
+        publisher: { '@type': 'Organization', name: 'InGoedendoen' },
+        image: entry.image ? 'https://www.ingoedendoen.nl' + entry.image : undefined,
+        mainEntityOfPage: 'https://www.ingoedendoen.nl' + entry.path,
+        inLanguage: 'nl-NL',
+      }
+    : null;
+  const breadcrumbLd = cat
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.ingoedendoen.nl/' },
+          { '@type': 'ListItem', position: 2, name: cat.name, item: 'https://www.ingoedendoen.nl' + cat.path },
+          { '@type': 'ListItem', position: 3, name: entry.title },
+        ],
+      }
+    : null;
+  pageData = { entry, cat, related, aside, hasCalc, jsonLd: jsonLd && breadcrumbLd ? [jsonLd, breadcrumbLd] : jsonLd || breadcrumbLd };
+} else {
+  const cat = categories.find((c) => c.slug === catSlug);
+  const catPosts = posts.filter((p) => p.categories.includes(catSlug));
+  const carousel = popularPosts(catPosts.filter((p) => p.image), 6);
+  const others = categories
+    .filter((c) => c.slug !== catSlug && !['uitgelicht', 'bol', 'uncategorized', 'dossier', 'vragen_over', 'test-en-checklist'].includes(c.slug) && c.count >= 5)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 4);
+  const catImage = (slug) => popularPosts(posts.filter((p) => p.categories.includes(slug) && p.image), 1)[0]?.image || null;
+  const popular = popularPosts(catPosts, 4);
+  pageData = { cat, catPosts, carousel, others: others.map((c) => ({ ...c, image: catImage(c.slug) })), popular, intro: CAT_INTRO[catSlug] || `Alle artikelen over ${cat.name.toLowerCase()}.` };
+}
+---
+{view === 'entry' ? (
+  <Base
+    title={pageData.entry.seoTitle || pageData.entry.title}
+    description={pageData.entry.metaDescription || pageData.entry.excerpt}
+    canonicalPath={pageData.entry.path}
+    ogImage={pageData.entry.image}
+    ogType="article"
+    jsonLd={pageData.jsonLd}
+  >
+    <div id="igd-progress"></div>
+    <div class="wrap">
+      <div style="padding: 24px 0 0;">
+        <nav class="breadcrumb" aria-label="Kruimelpad">
+          <a href="/">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Home
+          </a>
+          {pageData.cat && <span class="sep">/</span>}
+          {pageData.cat && <a href={pageData.cat.path}>{pageData.cat.name}</a>}
+          <span class="sep">/</span>
+          <span class="current">{pageData.entry.title}</span>
+        </nav>
+      </div>
+      <div class="article-grid">
+        <article class="article-col">
+          {pageData.cat && <a class="article-kicker" href={pageData.cat.path}>{pageData.cat.name}</a>}
+          <h1>{pageData.entry.title}</h1>
+          <div class="author-row">
+            <div class="author-avatar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="author-name">{pageData.entry.author}</div>
+              <div class="author-meta">
+                <span>{fmtDate(pageData.entry.date, true)}</span>
+                <span>·</span>
+                <span style="display:inline-flex; align-items:center; gap:3px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {pageData.entry.readingTime} min lezen
+                </span>
+              </div>
+            </div>
+          </div>
+          {pageData.entry.image && !pageData.entry.body.slice(0, 600).includes(pageData.entry.image) && (
+            <div class="article-hero">
+              <img src={pageData.entry.image} alt={pageData.entry.title} width="1200" height="675" />
+            </div>
+          )}
+          <div class="igd-body" set:html={pageData.entry.body} />
+          {pageData.entry.tags.length > 0 && (
+            <div class="tags-row">
+              {pageData.entry.tags.map((t) => <span class="tag-chip">{t}</span>)}
+            </div>
+          )}
+          {pageData.related.length > 0 && (
+            <div class="related">
+              <span class="igd-section-label">Lees ook</span>
+              <div class="related-grid">
+                {pageData.related.map((p) => <ArticleCard post={p} categories={categories} />)}
+              </div>
+            </div>
+          )}
+        </article>
+        <aside class="article-aside">
+          <div class="aside-sticky">
+            <div style="margin-bottom: 16px;">
+              <span class="igd-section-label">Populair</span>
+            </div>
+            {pageData.aside.map((p) => {
+              const c = primaryCat(p, categories);
+              return (
+                <a class="sb-item" href={p.path}>
+                  <div class="card-meta" style="margin-bottom:0;">
+                    {c && <span class="cat-tag" style={`color:${catColor(c.slug)}`}>{c.name}</span>}
+                    <span class="meta-dot">·</span>
+                    <span class="meta-txt">{fmtDate(p.date)} · {p.readingTime} min</span>
+                  </div>
+                  <h4>{p.title}</h4>
+                </a>
+              );
+            })}
+            <div class="newsletter-card">
+              <span class="pill">Nieuwsbrief</span>
+              <strong>Wekelijks de beste gezondheidstips</strong>
+              <p>Geen spam. Alleen content die je écht verder helpt.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <script>
+      const bar = document.getElementById('igd-progress');
+      addEventListener('scroll', () => {
+        const el = document.documentElement;
+        const total = el.scrollHeight - el.clientHeight;
+        bar.style.width = (total > 0 ? (el.scrollTop / total) * 100 : 0) + '%';
+      }, { passive: true });
+    </script>
+    {pageData.hasCalc && <script src="/js/calculators.js" is:inline defer></script>}
+  </Base>
+) : (
+  <Base
+    title={`${pageData.cat.name} — artikelen en tips`}
+    description={pageData.intro}
+    canonicalPath={pageData.cat.path}
+    ogImage={pageData.carousel[0]?.image}
+  >
+    <div class="thema-head">
+      <div class="thema-head-inner">
+        <nav class="breadcrumb breadcrumb--dark" aria-label="Kruimelpad">
+          <a href="/">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Home
+          </a>
+          <span class="sep">/</span>
+          <a href="/artikelen-overzicht/">Thema's</a>
+          <span class="sep">/</span>
+          <span class="current">{pageData.cat.name}</span>
+        </nav>
+        <div class="thema-title-row">
+          <div>
+            <h1>{pageData.cat.name}</h1>
+            <p>{pageData.intro}</p>
+          </div>
+          <span class="thema-count">{pageData.catPosts.length} artikelen</span>
+        </div>
+      </div>
+    </div>
+    <div class="thema-main">
+      <div class="thema-main-inner">
+        <div class="thema-list">
+          <div class="section-head" style="margin-bottom:8px;">
+            <span class="igd-section-label igd-section-label--light">Artikelen over {pageData.cat.name.toLowerCase()}</span>
+            <a class="section-more section-more--dark" href="/artikelen-overzicht/">
+              Alle artikelen
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+          {pageData.catPosts.map((p) => (
+            <a class="art-item" href={p.path}>
+              <div class="art-item-thumb">
+                {p.image && <img src={p.image} alt="" loading="lazy" width="360" height="256" />}
+              </div>
+              <div style="min-width:0;">
+                <span class="kicker">Artikel</span>
+                <h3>{p.title}</h3>
+                <p class="excerpt">{p.excerpt}</p>
+                <span class="byline">{p.author} · {fmtDate(p.date)} · {p.readingTime} min lezen</span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <aside class="thema-side">
+          <div style="margin-bottom: 16px;">
+            <span class="igd-section-label igd-section-label--light">Andere thema's</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:32px;">
+            {pageData.others.map((c) => (
+              <a class:list={['mini-tile', !c.image && 'mini-tile--noimg']} href={c.path}>
+                {c.image && <img src={c.image} alt="" loading="lazy" width="248" height="72" />}
+                <div class="mini-scrim"></div>
+                <span class="mini-label">{c.name}</span>
+                <div class="mini-underline"></div>
+              </a>
+            ))}
+          </div>
+          <div style="margin-bottom: 4px;">
+            <span class="igd-section-label igd-section-label--light">Populair</span>
+          </div>
+          {pageData.popular.map((p) => (
+            <a class="sb-item sb-item--dark" href={p.path}>
+              <span class="meta-txt">{fmtDate(p.date)} · {p.readingTime} min</span>
+              <h4>{p.title}</h4>
+            </a>
+          ))}
+        </aside>
+      </div>
+    </div>
+  </Base>
+)}

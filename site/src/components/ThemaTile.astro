@@ -1,0 +1,12 @@
+---
+const { href, label, image, count } = Astro.props;
+---
+<a class:list={['thema-tile', !image && 'thema-tile--noimg']} href={href}>
+  {image && <img src={image} alt={label} loading="lazy" width="400" height="600" />}
+  <div class="thema-overlay"></div>
+  <div class="thema-label">
+    <strong>{label}</strong>
+    {count != null && <span>{count} artikelen</span>}
+  </div>
+  <div class="thema-underline"></div>
+</a>

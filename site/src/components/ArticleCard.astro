@@ -1,0 +1,21 @@
+---
+import { catColor, fmtDate, primaryCat } from '../lib/ui.js';
+
+const { post, categories } = Astro.props;
+const cat = primaryCat(post, categories);
+---
+<a class="card" href={post.path}>
+  <div class:list={['card-img', !post.image && 'card-img--empty']}>
+    {post.image ? <img src={post.image} alt={post.title} loading="lazy" width="640" height="360" /> : <span>{post.title.slice(0, 1)}</span>}
+  </div>
+  <div class="card-body">
+    <div class="card-meta">
+      {cat && <span class="cat-tag" style={`color:${catColor(cat.slug)}`}>{cat.name}</span>}
+      {cat && <span class="meta-dot">·</span>}
+      <span class="meta-txt">{fmtDate(post.date)}</span>
+      <span class="meta-dot">·</span>
+      <span class="meta-txt">{post.readingTime} min</span>
+    </div>
+    <h3>{post.title}</h3>
+  </div>
+</a>

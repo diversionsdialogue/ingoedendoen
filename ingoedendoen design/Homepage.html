@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InGoedendoen — Voor een gezond, fit en vrolijk leven</title>
+<link rel="stylesheet" href="_ds/ingoedendoen-design-system-c7b6420c-4754-4083-b036-265964d0c5ff/styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/ingoedendoen-design-system-c7b6420c-4754-4083-b036-265964d0c5ff/_ds_bundle.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; }
+  body { font-family: var(--font-sans); background: var(--color-surface-page); color: var(--color-text-primary); -webkit-font-smoothing: antialiased; }
+  #root { display: flex; flex-direction: column; min-height: 100%; }
+  img { display: block; max-width: 100%; }
+
+  /* Ticker */
+  @keyframes igdTicker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .igd-ticker-track {
+    display: flex;
+    animation: igdTicker 36s linear infinite;
+  }
+  .igd-ticker-track:hover { animation-play-state: paused; }
+
+  /* Hover link */
+  a.igd-link:hover { color: var(--color-lime-600) !important; text-decoration: none !important; }
+
+  /* Section divider label */
+  .igd-section-label {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+    display: inline-block;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-lime-400);
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+/* ── Data ───────────────────────────────────────────────── */
+const CAT_COLOR = {
+  voeding:  'var(--color-lime-600)',
+  beweging: 'var(--color-blue-500)',
+  mindset:  'var(--color-pink-500)',
+  recepten: 'var(--color-neutral-500)',
+};
+
+const IMGS = {
+  hero:  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1400&q=80',
+  r1:    'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=700&q=75',
+  r2:    'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=75',
+  r3:    'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=75',
+  s1:    'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&q=75',
+  s2:    'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=400&q=75',
+  s3:    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=75',
+  s4:    'https://images.unsplash.com/photo-1490914327627-9fe8d52f4d90?w=400&q=75',
+};
+
+const FEATURED = {
+  category: 'voeding',
+  title: '20 minuten wandelen verandert meer dan je denkt',
+  excerpt: 'Wist je dat een korte wandeling na het eten je bloedsuiker stabiliseert én je humeur verbetert? We leggen uit waarom beweging al na een kwartier een merkbaar verschil maakt voor lichaam en geest.',
+  author: 'Sophie van Dam',
+  date: '11 jun 2026',
+  readTime: 5,
+  image: IMGS.hero,
+};
+
+const RECENT = [
+  { id:1, category:'beweging', title:'Zo maak je van elke dag een beweegdag', date:'10 jun 2026', readTime:4, image: IMGS.r1 },
+  { id:2, category:'recepten', title:'Havermout drie manieren — van saai naar subliem', date:'9 jun 2026', readTime:3, image: IMGS.r2 },
+  { id:3, category:'mindset',  title:'Waarom je brein rust nodig heeft', date:'8 jun 2026', readTime:6, image: IMGS.r3 },
+];
+
+const THEMAS = [
+  { id:'voeding',  label:'Voeding',         img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80' },
+  { id:'beweging', label:'Beweging',        img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80' },
+  { id:'mindset',  label:'Mindset',         img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80' },
+  { id:'recepten', label:'Recepten',        img:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80' },
+  { id:'slaap',    label:'Slaap & herstel', img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=500&q=80' },
+];
+
+const VIDEOS_FEATURED = {
+  title:'Zo eet je gezonder zonder ingewikkelde diëten',
+  duration:'8 min', category:'voeding',
+  img:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80',
+};
+const VIDEOS_LIST = [
+  { id:1, title:'5 oefeningen voor een sterke rug thuis',       duration:'12 min', img:'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=75' },
+  { id:2, title:'Wat eet je voor de beste nachtrust?',          duration:'6 min',  img:'https://images.unsplash.com/photo-1490914327627-9fe8d52f4d90?w=400&q=75' },
+  { id:3, title:'Meditatie voor beginners: zo adem je beter',    duration:'15 min', img:'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=75' },
+  { id:4, title:'Gezonde lunch in 15 minuten klaar',            duration:'5 min',  img:'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=400&q=75' },
+];
+
+const SIDEBAR = {
+  voeding: [
+    { id:4, title:'De beste voeding voor je darmflora', date:'7 jun 2026', readTime:7, image: IMGS.s1 },
+    { id:5, title:'Zo eet je meer groenten zonder het te merken', date:'5 jun 2026', readTime:4, image: IMGS.s2 },
+  ],
+  beweging: [
+    { id:6, title:'Stretching voor beginners: 10 minuten per dag', date:'4 jun 2026', readTime:4, image: IMGS.s3 },
+    { id:7, title:'Wandelen vs hardlopen: wat past bij jou?', date:'2 jun 2026', readTime:5, image: IMGS.s4 },
+  ],
+};
+
+const TICKER = [
+  'Wandelen na het eten verlaagt je bloedsuiker aanzienlijk',
+  '5 snelle lunches die je de hele middag energie geven',
+  'Mediterraan dieet vermindert ontstekingen — nieuw onderzoek bevestigt',
+  'Mindfulness in 10 minuten: zo begin je vandaag nog',
+  'De beste oefeningen voor een sterke, pijnvrije rug',
+  'Havermout als basis voor een gezond en gevarieerd ontbijt',
+];
+
+/* ── Header ─────────────────────────────────────────────── */
+function Header() {
+  const [navHover, setNavHover] = React.useState(null);
+  const [searchOpen, setSearchOpen] = React.useState(false);
+  const [searchVal, setSearchVal] = React.useState('');
+  const links = ['Voeding', 'Beweging', 'Mindset', 'Recepten'];
+  const now = new Date().toLocaleTimeString('nl-NL', { hour:'2-digit', minute:'2-digit' });
+
+  return (
+    <header style={{ background:'var(--color-neutral-900)', position:'sticky', top:0, zIndex:100 }}>
+
+      {/* ── Top row: time | logo | actions ── */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr auto 1fr', alignItems:'center', padding:'0 40px', height:'60px', borderBottom:'1px solid rgba(255,255,255,0.07)' }}>
+
+        {/* Left: time */}
+        <div style={{ display:'flex', alignItems:'center', gap:'16px' }}>
+          <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-500)', letterSpacing:'0.04em', fontVariantNumeric:'tabular-nums' }}>{now}</span>
+        </div>
+
+        {/* Center: logo */}
+        <div style={{ fontFamily:'var(--font-display)', fontSize:'1.4375rem', fontWeight:700, letterSpacing:'-0.03em', color:'#fff', cursor:'pointer', userSelect:'none' }}>
+          <span style={{ color:'var(--color-lime-400)' }}>In</span>Goedendoen
+          <sup style={{ fontSize:'0.45em', letterSpacing:0, color:'var(--color-lime-400)', marginLeft:'2px', verticalAlign:'super' }}>®</sup>
+        </div>
+
+        {/* Right: search + login + CTA */}
+        <div style={{ display:'flex', alignItems:'center', gap:'10px', justifyContent:'flex-end' }}>
+          <button
+            onClick={() => setSearchOpen(s => !s)}
+            style={{ background:'none', border:'none', cursor:'pointer', color: searchOpen ? 'var(--color-lime-400)' : 'var(--color-neutral-400)', padding:'6px', borderRadius:'6px', display:'flex', transition:'color 150ms' }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <button style={{ background:'none', border:'1.5px solid rgba(255,255,255,0.18)', color:'rgba(255,255,255,0.75)', fontFamily:'var(--font-sans)', fontWeight:500, fontSize:'0.8125rem', borderRadius:'9999px', padding:'5px 15px', cursor:'pointer' }}>Inloggen</button>
+          <button style={{ background:'var(--color-lime-400)', color:'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:700, fontSize:'0.8125rem', border:'none', borderRadius:'9999px', padding:'6px 17px', cursor:'pointer' }}>Nieuwsbrief</button>
+        </div>
+      </div>
+
+      {/* ── Bottom row: ticker | category nav ── */}
+      <div style={{ display:'flex', alignItems:'stretch', height:'38px' }}>
+
+        {/* "Nieuws" label */}
+        <div style={{ background:'var(--color-lime-400)', color:'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:800, fontSize:'0.5625rem', letterSpacing:'0.18em', textTransform:'uppercase', display:'flex', alignItems:'center', padding:'0 14px', flexShrink:0 }}>
+          Nieuws
+        </div>
+
+        {/* Scrolling ticker */}
+        <div style={{ flex:1, overflow:'hidden', display:'flex', alignItems:'center', borderRight:'1px solid rgba(255,255,255,0.07)' }}>
+          <div className="igd-ticker-track">
+            {[...TICKER, ...TICKER].map((item, i) => (
+              <span key={i} style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-400)', whiteSpace:'nowrap', padding:'0 28px', cursor:'pointer' }}>
+                {item}
+                <span style={{ color:'var(--color-lime-400)', marginLeft:'28px' }}>★</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Category nav links */}
+        <div style={{ display:'flex', alignItems:'stretch', flexShrink:0 }}>
+          {links.map(l => (
+            <a key={l} href="#" onClick={e => e.preventDefault()}
+              onMouseEnter={() => setNavHover(l)} onMouseLeave={() => setNavHover(null)}
+              style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', fontWeight:500, color: navHover===l ? '#fff' : 'var(--color-neutral-400)', padding:'0 14px', display:'flex', alignItems:'center', textDecoration:'none', transition:'color 150ms', borderLeft:'1px solid rgba(255,255,255,0.07)' }}>
+              {l}
+            </a>
+          ))}
+          <a href="#" onClick={e => e.preventDefault()} style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-600)', padding:'0 14px', display:'flex', alignItems:'center', textDecoration:'none', borderLeft:'1px solid rgba(255,255,255,0.07)', gap:'4px', whiteSpace:'nowrap' }}>
+            Alle artikelen
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Search bar drop-down */}
+      {searchOpen && (
+        <div style={{ borderTop:'1px solid rgba(255,255,255,0.07)', background:'var(--color-neutral-900)', padding:'14px 40px', display:'flex', alignItems:'center', gap:'10px' }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" style={{ color:'var(--color-neutral-500)', flexShrink:0 }}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input autoFocus value={searchVal} onChange={e => setSearchVal(e.target.value)} placeholder="Zoek een artikel of onderwerp…"
+            style={{ flex:1, fontFamily:'var(--font-sans)', fontSize:'0.9375rem', border:'none', background:'transparent', outline:'none', color:'#fff' }} />
+          {searchVal && <button onClick={() => setSearchVal('')} style={{ background:'none', border:'none', cursor:'pointer', color:'var(--color-neutral-600)', fontFamily:'var(--font-sans)', fontSize:'0.8125rem' }}>Wissen</button>}
+        </div>
+      )}
+    </header>
+  );
+}
+
+/* ── Section label (Lexington underline style) ──────────── */
+function SectionLabel({ children, more }) {
+  return (
+    <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', marginBottom:'20px' }}>
+      <span className="igd-section-label">{children}</span>
+      {more && (
+        <a href="#" onClick={e => e.preventDefault()} className="igd-link"
+          style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', fontWeight:500, color:'var(--color-blue-500)', textDecoration:'none', display:'flex', alignItems:'center', gap:'3px', transition:'color 150ms' }}>
+          Meer artikelen
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      )}
+    </div>
+  );
+}
+
+/* ── Featured hero (text left / image right) ─────────────── */
+function FeaturedHero({ article }) {
+  const [hov, setHov] = React.useState(false);
+  return (
+    <div style={{ display:'grid', gridTemplateColumns:'1fr 1.45fr', gap:'40px', alignItems:'center', padding:'32px 0 36px' }}>
+
+      {/* Left: text */}
+      <div>
+        <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.625rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color: CAT_COLOR[article.category] }}>{article.category}</span>
+        <h1 style={{ fontFamily:'var(--font-display)', fontSize:'2rem', fontWeight:700, lineHeight:1.18, letterSpacing:'-0.025em', color:'var(--color-text-primary)', margin:'12px 0 14px', textWrap:'balance' }}>{article.title}</h1>
+        <p style={{ fontFamily:'var(--font-sans)', fontSize:'0.9375rem', lineHeight:1.68, color:'var(--color-text-secondary)', marginBottom:'22px' }}>{article.excerpt}</p>
+        {/* Author row */}
+        <div style={{ display:'flex', alignItems:'center', gap:'10px', marginBottom:'24px' }}>
+          <div style={{ width:'30px', height:'30px', borderRadius:'50%', background:'var(--color-lime-100)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-lime-600)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', fontWeight:600, color:'var(--color-text-primary)' }}>{article.author}</div>
+            <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'var(--color-text-tertiary)' }}>{article.date} · {article.readTime} min lezen</div>
+          </div>
+        </div>
+        <button
+          onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+          style={{ background: hov ? 'var(--color-neutral-900)' : 'var(--color-lime-400)', color: hov ? '#fff' : 'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:700, fontSize:'0.875rem', border:'none', borderRadius:'9999px', padding:'10px 22px', cursor:'pointer', transition:'all 160ms var(--ease-out)', display:'inline-flex', alignItems:'center', gap:'6px' }}>
+          Lees artikel
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+
+      {/* Right: image */}
+      <div style={{ borderRadius:'var(--radius-lg)', overflow:'hidden', aspectRatio:'4/3' }}>
+        <img src={article.image} alt={article.title} style={{ width:'100%', height:'100%', objectFit:'cover' }} />
+      </div>
+    </div>
+  );
+}
+
+/* ── Recent article card ─────────────────────────────────── */
+function RecentCard({ article }) {
+  const [hov, setHov] = React.useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ background:'var(--color-surface-card)', borderRadius:'var(--radius-lg)', border:'1px solid var(--color-border-default)', overflow:'hidden', cursor:'pointer', transition:'transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out)', transform: hov ? 'translateY(-3px)' : 'none', boxShadow: hov ? 'var(--shadow-md)' : 'var(--shadow-sm)' }}>
+      <div style={{ aspectRatio:'16/9', overflow:'hidden' }}>
+        <img src={article.image} alt={article.title} style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 400ms var(--ease-out)', transform: hov ? 'scale(1.05)' : 'scale(1)' }} />
+      </div>
+      <div style={{ padding:'14px 18px 18px' }}>
+        <div style={{ display:'flex', alignItems:'center', gap:'6px', marginBottom:'7px' }}>
+          <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.5625rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color: CAT_COLOR[article.category] }}>{article.category}</span>
+          <span style={{ color:'var(--color-neutral-300)' }}>·</span>
+          <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'var(--color-text-tertiary)' }}>{article.date}</span>
+          <span style={{ color:'var(--color-neutral-300)' }}>·</span>
+          <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'var(--color-text-tertiary)' }}>{article.readTime} min</span>
+        </div>
+        <h3 style={{ fontFamily:'var(--font-display)', fontSize:'0.9375rem', fontWeight:600, lineHeight:1.3, letterSpacing:'-0.01em', color: hov ? 'var(--color-lime-600)' : 'var(--color-text-primary)', transition:'color 150ms', textWrap:'balance' }}>{article.title}</h3>
+      </div>
+    </div>
+  );
+}
+
+/* ── Sidebar compact article row ─────────────────────────── */
+function SidebarRow({ article }) {
+  const [hov, setHov] = React.useState(false);
+  return (
+    <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ display:'flex', gap:'12px', alignItems:'flex-start', padding:'13px 0', borderBottom:'1px solid var(--color-border-default)', cursor:'pointer' }}>
+      <div style={{ width:'68px', height:'52px', borderRadius:'8px', overflow:'hidden', flexShrink:0 }}>
+        <img src={article.image} alt={article.title} style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 320ms', transform: hov ? 'scale(1.07)' : 'scale(1)' }} />
+      </div>
+      <div style={{ flex:1, minWidth:0 }}>
+        <h4 style={{ fontFamily:'var(--font-display)', fontSize:'0.875rem', fontWeight:600, lineHeight:1.3, color: hov ? 'var(--color-lime-600)' : 'var(--color-text-primary)', transition:'color 150ms', marginBottom:'4px', textWrap:'balance' }}>{article.title}</h4>
+        <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'var(--color-text-tertiary)' }}>{article.date} · {article.readTime} min</div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Thema's ────────────────────────────────────────────── */
+function ThemaSection() {
+  const [hov, setHov] = React.useState(null);
+  return (
+    <section style={{ borderTop:'1px solid var(--color-border-default)', padding:'40px 40px 52px' }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto' }}>
+        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', marginBottom:'20px' }}>
+          <span className="igd-section-label">Thema's</span>
+          <a href="#" onClick={e=>e.preventDefault()} style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', fontWeight:500, color:'var(--color-blue-500)', textDecoration:'none', display:'flex', alignItems:'center', gap:'3px' }}>
+            Bekijk alle
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:'12px' }}>
+          {THEMAS.map(t => (
+            <div key={t.id} onMouseEnter={() => setHov(t.id)} onMouseLeave={() => setHov(null)}
+              style={{ position:'relative', aspectRatio:'2/3', borderRadius:'var(--radius-lg)', overflow:'hidden', cursor:'pointer', transition:'transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out)', transform: hov===t.id ? 'translateY(-4px)' : 'none', boxShadow: hov===t.id ? 'var(--shadow-lg)' : 'var(--shadow-sm)' }}>
+              <img src={t.img} alt={t.label} style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 400ms var(--ease-out)', transform: hov===t.id ? 'scale(1.06)' : 'scale(1)' }} />
+              <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(20,20,20,0.78) 0%, rgba(20,20,20,0.1) 50%, transparent 100%)' }} />
+              <div style={{ position:'absolute', bottom:0, left:0, right:0, padding:'14px 16px' }}>
+                <div style={{ fontFamily:'var(--font-display)', fontSize:'1rem', fontWeight:700, color:'#fff', letterSpacing:'-0.01em', lineHeight:1.2 }}>{t.label}</div>
+              </div>
+              <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'3px', background:'var(--color-lime-400)', transition:'transform 200ms var(--ease-out)', transformOrigin:'left', transform: hov===t.id ? 'scaleX(1)' : 'scaleX(0)' }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Video's ─────────────────────────────────────────────── */
+function PlayBtn({ size=22 }) {
+  return (
+    <div style={{ width:size+14, height:size+14, background:'var(--color-lime-400)', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+      <svg width={size*0.48} height={size*0.48} viewBox="0 0 24 24" fill="var(--color-neutral-900)"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </div>
+  );
+}
+function VideoSection() {
+  const [hov, setHov] = React.useState(null);
+  return (
+    <section style={{ background:'var(--color-neutral-900)', padding:'48px 40px 56px' }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto' }}>
+        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', marginBottom:'28px' }}>
+          <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.625rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'#fff', display:'inline-block', paddingBottom:'8px', borderBottom:'2px solid var(--color-lime-400)' }}>Video's</span>
+          <a href="#" onClick={e=>e.preventDefault()} style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', fontWeight:500, color:'var(--color-neutral-500)', textDecoration:'none', display:'flex', alignItems:'center', gap:'3px' }}>
+            Bekijk alle
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'1fr 1px 1fr', gap:'44px', alignItems:'start' }}>
+
+          {/* Featured video left */}
+          <div onMouseEnter={() => setHov('f')} onMouseLeave={() => setHov(null)} style={{ cursor:'pointer' }}>
+            <div style={{ position:'relative', borderRadius:'var(--radius-lg)', overflow:'hidden', aspectRatio:'16/10', marginBottom:'16px' }}>
+              <img src={VIDEOS_FEATURED.img} alt={VIDEOS_FEATURED.title} style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 400ms', transform: hov==='f' ? 'scale(1.03)' : 'scale(1)' }} />
+              <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.22)' }} />
+              <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)' }}><PlayBtn size={28} /></div>
+            </div>
+            <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.5625rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color: CAT_COLOR[VIDEOS_FEATURED.category] }}>{VIDEOS_FEATURED.category}</span>
+            <h3 style={{ fontFamily:'var(--font-display)', fontSize:'1.25rem', fontWeight:700, color:'#fff', lineHeight:1.25, letterSpacing:'-0.015em', margin:'6px 0 8px', textWrap:'balance' }}>{VIDEOS_FEATURED.title}</h3>
+            <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-500)', display:'flex', alignItems:'center', gap:'5px' }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              {VIDEOS_FEATURED.duration}
+            </span>
+          </div>
+
+          {/* Divider */}
+          <div style={{ background:'rgba(255,255,255,0.07)', alignSelf:'stretch' }} />
+
+          {/* Video list right */}
+          <div style={{ display:'flex', flexDirection:'column' }}>
+            {VIDEOS_LIST.map((v, i) => (
+              <div key={v.id} onMouseEnter={() => setHov(v.id)} onMouseLeave={() => setHov(null)}
+                style={{ display:'flex', gap:'14px', alignItems:'center', padding:'14px 0', borderBottom: i < VIDEOS_LIST.length-1 ? '1px solid rgba(255,255,255,0.07)' : 'none', cursor:'pointer' }}>
+                <div style={{ position:'relative', width:'96px', height:'64px', borderRadius:'8px', overflow:'hidden', flexShrink:0 }}>
+                  <img src={v.img} alt={v.title} style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 300ms', transform: hov===v.id ? 'scale(1.06)' : 'scale(1)' }} />
+                  <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)', display:'flex', alignItems:'center', justifyContent:'center' }}><PlayBtn size={16} /></div>
+                </div>
+                <div style={{ flex:1 }}>
+                  <h4 style={{ fontFamily:'var(--font-display)', fontSize:'0.9375rem', fontWeight:600, color: hov===v.id ? 'var(--color-lime-400)' : '#fff', lineHeight:1.3, marginBottom:'4px', transition:'color 150ms', textWrap:'balance' }}>{v.title}</h4>
+                  <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'var(--color-neutral-500)', display:'flex', alignItems:'center', gap:'4px' }}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {v.duration}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Over ons ────────────────────────────────────────────── */
+const OVER_ONS_POINTS = [
+  { n:'01', label:'Eerlijk en toegankelijk', text:'Wij schrijven zoals een goede vriend met je praat — zonder jargon, zonder oordeel. Gezonde tips voor echte mensen.' },
+  { n:'02', label:'Onafhankelijke redactie', text:'Onze inhoud wordt nooit beïnvloed door adverteerders. Wat wij schrijven, geloven we ook echt.' },
+  { n:'03', label:'Samenwerking met experts', text:'We werken samen met diëtisten, sportcoaches en psychologen voor de meest betrouwbare informatie.' },
+];
+function OverOnsSection() {
+  const [hov, setHov] = React.useState(false);
+  return (
+    <section style={{ background:'var(--color-neutral-50)', padding:'72px 40px' }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'72px', alignItems:'center' }}>
+
+        {/* Left: image */}
+        <div style={{ borderRadius:'var(--radius-xl)', overflow:'hidden', aspectRatio:'4/3' }}>
+          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=900&q=80" alt="InGoedendoen team" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+        </div>
+
+        {/* Right: text */}
+        <div>
+          <h2 style={{ fontFamily:'var(--font-display)', fontSize:'2rem', fontWeight:700, lineHeight:1.15, letterSpacing:'-0.025em', color:'var(--color-text-primary)', marginBottom:'16px', textWrap:'balance' }}>
+            Onze content is anders, omdat wij de lat hoger leggen
+          </h2>
+          <p style={{ fontFamily:'var(--font-sans)', fontSize:'0.9375rem', lineHeight:1.7, color:'var(--color-text-secondary)', marginBottom:'32px' }}>
+            InGoedendoen is er voor mensen die genieten van het leven én bewust bezig zijn met hun gezondheid. Geen ingewikkelde diëten of extreme schema's — gewoon slimmer leven.
+          </p>
+          <div style={{ display:'flex', flexDirection:'column', gap:'22px', marginBottom:'32px' }}>
+            {OVER_ONS_POINTS.map(p => (
+              <div key={p.n} style={{ display:'flex', gap:'16px', alignItems:'flex-start' }}>
+                <span style={{ fontFamily:'var(--font-display)', fontSize:'1.125rem', fontWeight:800, color:'var(--color-lime-400)', letterSpacing:'-0.02em', lineHeight:1.3, flexShrink:0, minWidth:'30px' }}>{p.n}</span>
+                <div>
+                  <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.9375rem', fontWeight:700, color:'var(--color-text-primary)', marginBottom:'3px' }}>{p.label}</div>
+                  <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.875rem', lineHeight:1.62, color:'var(--color-text-secondary)' }}>{p.text}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href="#" onClick={e=>e.preventDefault()} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+            style={{ fontFamily:'var(--font-sans)', fontSize:'0.9375rem', fontWeight:600, color: hov ? 'var(--color-lime-600)' : 'var(--color-text-primary)', textDecoration:'none', display:'inline-flex', alignItems:'center', gap:'6px', transition:'color 150ms', borderBottom: hov ? '1px solid var(--color-lime-400)' : '1px solid transparent', paddingBottom:'1px' }}>
+            Lees meer over onze aanpak
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Newsletter ─────────────────────────────────────────── */
+function Newsletter() {
+  const [val, setVal] = React.useState('');
+  const [sent, setSent] = React.useState(false);
+  return (
+    <section style={{ background:'var(--color-neutral-900)', padding:'72px 40px', textAlign:'center' }}>
+      <div style={{ maxWidth:'500px', margin:'0 auto' }}>
+        <span style={{ display:'inline-block', background:'var(--color-lime-400)', color:'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:800, fontSize:'0.5625rem', letterSpacing:'0.18em', textTransform:'uppercase', borderRadius:'9999px', padding:'4px 14px', marginBottom:'20px' }}>Nieuwsbrief</span>
+        <h2 style={{ fontFamily:'var(--font-display)', fontSize:'1.875rem', fontWeight:700, color:'#fff', lineHeight:1.2, letterSpacing:'-0.025em', marginBottom:'12px', textWrap:'balance' }}>Iedere week de beste gezondheidstips</h2>
+        <p style={{ fontFamily:'var(--font-sans)', fontSize:'0.9375rem', color:'rgba(255,255,255,0.5)', lineHeight:1.65, marginBottom:'28px' }}>Geen spam. Alleen content die je écht verder helpt.</p>
+        {sent ? (
+          <div style={{ background:'rgba(169,211,0,0.12)', border:'1px solid rgba(169,211,0,0.3)', borderRadius:'var(--radius-lg)', padding:'18px 24px', color:'var(--color-lime-400)', fontFamily:'var(--font-sans)', fontWeight:500, fontSize:'0.9375rem' }}>
+            ✓ Gelukt! Je staat ingeschreven.
+          </div>
+        ) : (
+          <div style={{ display:'flex', gap:'8px', maxWidth:'400px', margin:'0 auto' }}>
+            <input value={val} onChange={e => setVal(e.target.value)} placeholder="jouw@email.nl"
+              style={{ flex:1, fontFamily:'var(--font-sans)', fontSize:'0.9375rem', background:'rgba(255,255,255,0.07)', border:'1.5px solid rgba(255,255,255,0.13)', borderRadius:'9999px', padding:'11px 20px', color:'#fff', outline:'none', minWidth:0 }} />
+            <button onClick={() => val && setSent(true)}
+              style={{ background:'var(--color-lime-400)', color:'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:700, fontSize:'0.875rem', border:'none', borderRadius:'9999px', padding:'11px 22px', cursor:'pointer', flexShrink:0 }}>
+              Inschrijven
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+function Footer() {
+  return (
+    <footer style={{ borderTop:'1px solid var(--color-border-default)', padding:'28px 40px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:'16px', flexWrap:'wrap' }}>
+      <div style={{ fontFamily:'var(--font-display)', fontSize:'1rem', fontWeight:700, letterSpacing:'-0.02em', color:'var(--color-text-primary)' }}>
+        <span style={{ color:'var(--color-lime-400)' }}>In</span>Goedendoen
+      </div>
+      <p style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-text-tertiary)' }}>© 2026 InGoedendoen · Voor een gezond, fit en vrolijk leven.</p>
+      <div style={{ display:'flex', gap:'20px' }}>
+        {['Privacy', 'Contact', 'Over ons'].map(l => (
+          <a key={l} href="#" onClick={e => e.preventDefault()} style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-text-secondary)', textDecoration:'none' }}>{l}</a>
+        ))}
+      </div>
+    </footer>
+  );
+}
+
+/* ── App ─────────────────────────────────────────────────── */
+function App() {
+  return (
+    <div style={{ display:'flex', flexDirection:'column', minHeight:'100vh' }}>
+      <Header />
+
+      <main style={{ flex:1 }}>
+        <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 40px' }}>
+
+          {/* Featured section label */}
+          <div style={{ padding:'28px 0 0' }}>
+            <SectionLabel>Uitgelicht</SectionLabel>
+          </div>
+
+          {/* 2-column: content | sidebar */}
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 272px', gap:'0' }}>
+
+            {/* ── Left content column ── */}
+            <div style={{ borderRight:'1px solid var(--color-border-default)', paddingRight:'40px' }}>
+
+              {/* Featured hero */}
+              <FeaturedHero article={FEATURED} />
+
+              {/* Divider */}
+              <div style={{ borderTop:'1px solid var(--color-border-default)', margin:'4px 0 28px' }} />
+
+              {/* Recent label */}
+              <SectionLabel>Recent</SectionLabel>
+
+              {/* 3-column article grid */}
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'20px', paddingBottom:'52px' }}>
+                {RECENT.map(a => <RecentCard key={a.id} article={a} />)}
+              </div>
+            </div>
+
+            {/* ── Right sidebar ── */}
+            <div style={{ paddingLeft:'32px', paddingTop:'28px' }}>
+
+              {/* Voeding */}
+              <div style={{ marginBottom:'28px' }}>
+                <SectionLabel more>Voeding</SectionLabel>
+                {SIDEBAR.voeding.map(a => <SidebarRow key={a.id} article={a} />)}
+              </div>
+
+              {/* Beweging */}
+              <div style={{ marginBottom:'28px' }}>
+                <SectionLabel more>Beweging</SectionLabel>
+                {SIDEBAR.beweging.map(a => <SidebarRow key={a.id} article={a} />)}
+              </div>
+
+              {/* Brand promo block */}
+              <div style={{ marginTop:'8px', background:'var(--color-neutral-50)', border:'1px solid var(--color-border-default)', borderRadius:'var(--radius-lg)', padding:'24px 20px', textAlign:'center' }}>
+                <div style={{ fontFamily:'var(--font-display)', fontSize:'1.1875rem', fontWeight:700, letterSpacing:'-0.025em', color:'var(--color-text-primary)', marginBottom:'8px' }}>
+                  <span style={{ color:'var(--color-lime-400)' }}>In</span>Goedendoen
+                </div>
+                <p style={{ fontFamily:'var(--font-serif)', fontSize:'0.875rem', fontStyle:'italic', color:'var(--color-text-secondary)', lineHeight:1.55, marginBottom:'18px' }}>
+                  "Voor een gezond, fit en vrolijk leven."
+                </p>
+                <button style={{ background:'var(--color-lime-400)', color:'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:700, fontSize:'0.8125rem', border:'none', borderRadius:'9999px', padding:'8px 18px', cursor:'pointer', width:'100%' }}>
+                  Nieuwsbrief ontvangen →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <ThemaSection />
+      <VideoSection />
+      <OverOnsSection />
+      <Newsletter />
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

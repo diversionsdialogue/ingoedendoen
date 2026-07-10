@@ -1,0 +1,72 @@
+/* ============================================================
+   InGoedendoen – Color Tokens
+   Brand palette: lime-green energy, hot-pink warmth, bright-blue trust
+   ============================================================ */
+
+:root {
+  /* ── Brand: Lime Green ──────────────────────────────────── */
+  --color-lime-100: #edf7a3;
+  --color-lime-200: #d4ea60;
+  --color-lime-400: #a9d300;   /* ★ Primary brand */
+  --color-lime-500: #8eb800;   /* Hover / active */
+  --color-lime-600: #729400;
+  --color-lime-900: #3a4c00;
+
+  /* ── Brand: Hot Pink ────────────────────────────────────── */
+  --color-pink-100: #fce7f3;
+  --color-pink-200: #f7aad8;
+  --color-pink-400: #ee4aaa;
+  --color-pink-500: #dc0074;   /* ★ Accent / CTA */
+  --color-pink-600: #b80062;
+  --color-pink-900: #5c0031;
+
+  /* ── Brand: Sky Blue ────────────────────────────────────── */
+  --color-blue-100: #ddf3ff;
+  --color-blue-200: #99dbff;
+  --color-blue-400: #33baff;
+  --color-blue-500: #00a9ff;   /* ★ Info / links */
+  --color-blue-600: #0088cc;
+  --color-blue-900: #003d5c;
+
+  /* ── Neutrals ───────────────────────────────────────────── */
+  --color-neutral-0:   #ffffff;
+  --color-neutral-50:  #f8f8f8;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e8e8e8;   /* ★ Border / divider */
+  --color-neutral-300: #cccccc;
+  --color-neutral-400: #aaaaaa;
+  --color-neutral-500: #888888;
+  --color-neutral-600: #5d5d5d;   /* ★ Secondary text */
+  --color-neutral-700: #3d3d3d;
+  --color-neutral-800: #2e2e2e;
+  --color-neutral-900: #232323;   /* ★ Primary text */
+
+  /* ── Semantic: Text ─────────────────────────────────────── */
+  --color-text-primary:   var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-tertiary:  var(--color-neutral-400);
+  --color-text-disabled:  var(--color-neutral-400);
+  --color-text-inverse:   var(--color-neutral-0);
+  --color-text-brand:     var(--color-lime-600);
+  --color-text-accent:    var(--color-pink-500);
+  --color-text-link:      var(--color-blue-500);
+  --color-text-link-hover:var(--color-blue-600);
+
+  /* ── Semantic: Surfaces ─────────────────────────────────── */
+  --color-surface-page:   var(--color-neutral-0);
+  --color-surface-subtle: var(--color-neutral-100);
+  --color-surface-card:   var(--color-neutral-0);
+  --color-surface-dark:   var(--color-neutral-900);
+  --color-surface-brand:  var(--color-lime-400);
+  --color-surface-accent: var(--color-pink-500);
+
+  /* ── Semantic: Borders ──────────────────────────────────── */
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong:  var(--color-neutral-300);
+  --color-border-brand:   var(--color-lime-400);
+  --color-border-accent:  var(--color-pink-500);
+
+  /* ── Semantic: Focus ────────────────────────────────────── */
+  --color-focus-ring: var(--color-lime-400);
+  --color-focus-ring-offset: var(--color-neutral-0);
+}

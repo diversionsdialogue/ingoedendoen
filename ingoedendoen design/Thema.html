@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voeding — InGoedendoen</title>
+<link rel="stylesheet" href="_ds/ingoedendoen-design-system-c7b6420c-4754-4083-b036-265964d0c5ff/styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/ingoedendoen-design-system-c7b6420c-4754-4083-b036-265964d0c5ff/_ds_bundle.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; }
+  body { font-family: var(--font-sans); background: var(--color-surface-page); color: var(--color-text-primary); -webkit-font-smoothing: antialiased; }
+  #root { display: flex; flex-direction: column; min-height: 100%; }
+  img { display: block; max-width: 100%; }
+
+  @keyframes igdTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .igd-ticker-track { display: flex; animation: igdTicker 36s linear infinite; }
+  .igd-ticker-track:hover { animation-play-state: paused; }
+
+  .igd-section-label {
+    font-family: var(--font-sans); font-size: 0.625rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-primary);
+    display: inline-block; padding-bottom: 8px; border-bottom: 2px solid var(--color-lime-400);
+  }
+  .igd-section-label-light {
+    font-family: var(--font-sans); font-size: 0.625rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+    display: inline-block; padding-bottom: 8px; border-bottom: 2px solid var(--color-lime-400);
+  }
+
+  /* Carousel arrow btn */
+  .carousel-btn {
+    width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: rgba(255,255,255,0.7); transition: background 150ms, border-color 150ms, color 150ms;
+  }
+  .carousel-btn:hover { background: var(--color-lime-400); border-color: var(--color-lime-400); color: var(--color-neutral-900); }
+  .carousel-btn:disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+  /* Article list item */
+  .igd-art-item { display: flex; gap: 20px; align-items: flex-start; padding: 20px 0; border-bottom: 1px solid var(--color-border-default); cursor: pointer; text-decoration: none; color: inherit; }
+  .igd-art-item:last-child { border-bottom: none; }
+  .igd-art-item:hover .igd-art-item-title { color: var(--color-lime-600); }
+  .igd-art-item:hover .igd-art-item-thumb img { transform: scale(1.04); }
+  .igd-art-item-thumb { width: 180px; height: 128px; border-radius: var(--radius-md); overflow: hidden; flex-shrink: 0; }
+  .igd-art-item-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 360ms; }
+  .igd-art-item-title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.015em; color: var(--color-text-primary); transition: color 150ms; text-wrap: balance; margin: 5px 0 8px; }
+  .igd-art-item-excerpt { font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.62; color: var(--color-text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
+
+  /* Sidebar compact item */
+  .igd-sb-item { padding: 12px 0; border-bottom: 1px solid var(--color-border-default); cursor: pointer; }
+  .igd-sb-item:last-child { border-bottom: none; }
+  .igd-sb-item:hover .igd-sb-title { color: var(--color-lime-600); }
+  .igd-sb-title { font-family: var(--font-display); font-size: 0.875rem; font-weight: 600; line-height: 1.3; color: var(--color-text-primary); transition: color 150ms; text-wrap: balance; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const CAT_COLOR = {
+  voeding:'var(--color-lime-600)', beweging:'var(--color-blue-500)',
+  mindset:'var(--color-pink-500)', recepten:'var(--color-neutral-500)',
+};
+
+const TICKER = [
+  'Wandelen na het eten verlaagt je bloedsuiker aanzienlijk',
+  '5 snelle lunches die je de hele middag energie geven',
+  'Mediterraan dieet vermindert ontstekingen — nieuw onderzoek bevestigt',
+  'Mindfulness in 10 minuten: zo begin je vandaag nog',
+];
+
+const CAROUSEL = [
+  { id:1, category:'voeding', title:'20 minuten wandelen verandert meer dan je denkt', excerpt:'Wist je dat een korte wandeling na het eten je bloedsuiker stabiliseert én je humeur verbetert?', author:'Sophie van Dam', date:'11 jun 2026', readTime:5, img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=80' },
+  { id:2, category:'voeding', title:'De beste voeding voor je darmflora', excerpt:'Je darmen zijn je tweede brein. Wat je eet bepaalt hoe je je voelt — en deze voedingsmiddelen maken het verschil.', author:'Tim Hendriks', date:'7 jun 2026', readTime:7, img:'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&q=80' },
+  { id:3, category:'voeding', title:'Eiwitten: hoeveel heb je echt nodig?', excerpt:'De aanbevolen hoeveelheid verschilt per persoon. Wij zetten de feiten op een rij — simpel en zonder jargon.', author:'Lisa Groot', date:'3 jun 2026', readTime:5, img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=80' },
+  { id:4, category:'voeding', title:'Waarom je ontbijt niet mag overslaan', excerpt:'Ochtendeten beïnvloedt je energie, concentratie én stofwisseling de rest van de dag. De wetenschap legt uit.', author:'Sophie van Dam', date:'1 jun 2026', readTime:4, img:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=80' },
+];
+
+const ARTICLES = [
+  { id:1, category:'voeding', title:'20 minuten wandelen verandert meer dan je denkt', excerpt:'Wist je dat een korte wandeling na het eten je bloedsuiker stabiliseert én je humeur verbetert? We leggen uit waarom beweging al na een kwartier merkbaar werkt.', author:'Sophie van Dam', date:'11 jun 2026', readTime:5, img:'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=75' },
+  { id:2, category:'voeding', title:'De beste voeding voor je darmflora', excerpt:'Je darmen zijn je tweede brein. Wat je eet bepaalt hoe je je voelt — en deze tien voedingsmiddelen maken het verschil.', author:'Tim Hendriks', date:'7 jun 2026', readTime:7, img:'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&q=75' },
+  { id:3, category:'voeding', title:'Zo eet je meer groenten zonder het te merken', excerpt:'Slimme manieren om meer vezels en vitamines binnen te krijgen — zonder discipline, gewoon met smaak.', author:'Lisa Groot', date:'5 jun 2026', readTime:4, img:'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=600&q=75' },
+  { id:4, category:'voeding', title:'Eiwitten: hoeveel heb je echt nodig?', excerpt:'De aanbevolen hoeveelheid verschilt per persoon en doel. Wij zetten de feiten op een rij, simpel en zonder jargon.', author:'Lisa Groot', date:'3 jun 2026', readTime:5, img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=75' },
+  { id:5, category:'voeding', title:'Waarom je ontbijt niet mag overslaan', excerpt:'Ochtendeten beïnvloedt je energie, concentratie én stofwisseling. Dit is wat de wetenschap zegt.', author:'Sophie van Dam', date:'1 jun 2026', readTime:4, img:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=75' },
+];
+
+const SIDEBAR_POP = [
+  { id:6, category:'beweging', title:'Zo maak je van elke dag een beweegdag', date:'10 jun', readTime:4 },
+  { id:7, category:'mindset',  title:'Waarom je brein rust nodig heeft',       date:'8 jun',  readTime:6 },
+  { id:8, category:'recepten', title:'Havermout drie manieren',                date:'9 jun',  readTime:3 },
+];
+
+const OTHER_THEMES = [
+  { id:'beweging', label:'Beweging', color:'var(--color-blue-500)',  img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&q=75' },
+  { id:'mindset',  label:'Mindset',  color:'var(--color-pink-500)',  img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=75' },
+  { id:'recepten', label:'Recepten', color:'var(--color-neutral-500)', img:'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=300&q=75' },
+];
+
+/* ── Header ─────────────────────────────────────────────── */
+function Header() {
+  const [navHov, setNavHov] = React.useState(null);
+  const links = ['Voeding','Beweging','Mindset','Recepten'];
+  const now = new Date().toLocaleTimeString('nl-NL', { hour:'2-digit', minute:'2-digit' });
+  return (
+    <header style={{ background:'var(--color-neutral-900)', position:'sticky', top:0, zIndex:100 }}>
+      <div style={{ display:'grid', gridTemplateColumns:'1fr auto 1fr', alignItems:'center', padding:'0 40px', height:'60px', borderBottom:'1px solid rgba(255,255,255,0.07)' }}>
+        <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-500)', letterSpacing:'0.04em', fontVariantNumeric:'tabular-nums' }}>{now}</span>
+        <a href="Homepage.html" style={{ fontFamily:'var(--font-display)', fontSize:'1.4375rem', fontWeight:700, letterSpacing:'-0.03em', color:'#fff', textDecoration:'none' }}>
+          <span style={{ color:'var(--color-lime-400)' }}>In</span>Goedendoen<sup style={{ fontSize:'0.45em', color:'var(--color-lime-400)', marginLeft:'2px' }}>®</sup>
+        </a>
+        <div style={{ display:'flex', alignItems:'center', gap:'10px', justifyContent:'flex-end' }}>
+          <button style={{ background:'none', border:'none', cursor:'pointer', color:'var(--color-neutral-400)', padding:'6px', display:'flex' }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <button style={{ background:'none', border:'1.5px solid rgba(255,255,255,0.18)', color:'rgba(255,255,255,0.75)', fontFamily:'var(--font-sans)', fontWeight:500, fontSize:'0.8125rem', borderRadius:'9999px', padding:'5px 15px', cursor:'pointer' }}>Inloggen</button>
+          <button style={{ background:'var(--color-lime-400)', color:'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:700, fontSize:'0.8125rem', border:'none', borderRadius:'9999px', padding:'6px 17px', cursor:'pointer' }}>Nieuwsbrief</button>
+        </div>
+      </div>
+      <div style={{ display:'flex', alignItems:'stretch', height:'38px' }}>
+        <div style={{ background:'var(--color-lime-400)', color:'var(--color-neutral-900)', fontFamily:'var(--font-sans)', fontWeight:800, fontSize:'0.5625rem', letterSpacing:'0.18em', textTransform:'uppercase', display:'flex', alignItems:'center', padding:'0 14px', flexShrink:0 }}>Nieuws</div>
+        <div style={{ flex:1, overflow:'hidden', display:'flex', alignItems:'center', borderRight:'1px solid rgba(255,255,255,0.07)' }}>
+          <div className="igd-ticker-track">
+            {[...TICKER,...TICKER].map((t,i) => (
+              <span key={i} style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-400)', whiteSpace:'nowrap', padding:'0 28px' }}>
+                {t}<span style={{ color:'var(--color-lime-400)', marginLeft:'28px' }}>★</span>
+              </span>
+            ))}
+          </div>
+        </div>
+        <div style={{ display:'flex', alignItems:'stretch', flexShrink:0 }}>
+          {links.map(l => (
+            <a key={l} href="#" onClick={e=>e.preventDefault()} onMouseEnter={()=>setNavHov(l)} onMouseLeave={()=>setNavHov(null)}
+              style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', fontWeight: l==='Voeding'?700:500, color: l==='Voeding'?'var(--color-lime-400)': navHov===l?'#fff':'var(--color-neutral-400)', padding:'0 14px', display:'flex', alignItems:'center', textDecoration:'none', transition:'color 150ms', borderLeft:'1px solid rgba(255,255,255,0.07)', borderBottom: l==='Voeding'?'2px solid var(--color-lime-400)':'none' }}>{l}</a>
+          ))}
+        </div>
+      </div>
+    </header>
+  );
+}
+
+/* ── Carousel ────────────────────────────────────────────── */
+function Carousel({ items }) {
+  const [idx, setIdx] = React.useState(0);
+  const VISIBLE = 2.2;
+  const max = items.length - Math.floor(VISIBLE);
+
+  return (
+    <div style={{ background:'var(--color-neutral-900)', padding:'32px 40px 0' }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto' }}>
+        {/* Overflow window */}
+        <div style={{ overflow:'hidden', borderRadius:'var(--radius-lg)' }}>
+          <div style={{ display:'flex', gap:'12px', transition:'transform 420ms cubic-bezier(0.16,1,0.3,1)', transform:`translateX(calc(-${idx} * (${100/VISIBLE}% + ${12/VISIBLE}px)))` }}>
+            {items.map(item => (
+              <div key={item.id} style={{ position:'relative', minWidth:`calc(${100/VISIBLE}% - ${(12*(VISIBLE-1))/VISIBLE}px)`, height:'240px', borderRadius:'var(--radius-lg)', overflow:'hidden', cursor:'pointer', flexShrink:0 }}>
+                <img src={item.img} alt={item.title} style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }} />
+                <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.3) 55%, transparent 100%)' }} />
+                <div style={{ position:'absolute', inset:0, padding:'24px', display:'flex', flexDirection:'column', justifyContent:'flex-end' }}>
+                  <div style={{ marginBottom:'10px' }}>
+                    <div style={{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'12px' }}>
+                      <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.5625rem', fontWeight:700, letterSpacing:'0.15em', textTransform:'uppercase', color:'var(--color-lime-400)' }}>{item.category}</span>
+                      <span style={{ color:'rgba(255,255,255,0.3)', fontSize:'0.625rem' }}>·</span>
+                      <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'rgba(255,255,255,0.5)' }}>{item.readTime} min lezen</span>
+                    </div>
+                    <h3 style={{ fontFamily:'var(--font-display)', fontSize:'1.25rem', fontWeight:700, color:'#fff', lineHeight:1.2, letterSpacing:'-0.02em', marginBottom:'8px', textWrap:'balance' }}>{item.title}</h3>
+                    <p style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'rgba(255,255,255,0.6)', lineHeight:1.55, display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical', overflow:'hidden' }}>{item.excerpt}</p>
+                  </div>
+                  <div style={{ display:'flex', alignItems:'center', gap:'6px', borderTop:'1px solid rgba(255,255,255,0.12)', paddingTop:'12px' }}>
+                    <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'rgba(255,255,255,0.5)' }}>{item.author}</span>
+                    <span style={{ color:'rgba(255,255,255,0.25)' }}>·</span>
+                    <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'rgba(255,255,255,0.4)' }}>{item.date}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation arrows */}
+        <div style={{ display:'flex', alignItems:'center', gap:'8px', justifyContent:'flex-end', padding:'14px 0 0' }}>
+          <button className="carousel-btn" disabled={idx===0} onClick={()=>setIdx(i=>Math.max(0,i-1))}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button className="carousel-btn" disabled={idx>=max} onClick={()=>setIdx(i=>Math.min(max,i+1))}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+function Footer() {
+  return (
+    <footer style={{ borderTop:'1px solid var(--color-border-default)', padding:'28px 40px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:'16px', flexWrap:'wrap' }}>
+      <div style={{ fontFamily:'var(--font-display)', fontSize:'1rem', fontWeight:700, letterSpacing:'-0.02em' }}>
+        <span style={{ color:'var(--color-lime-400)' }}>In</span>Goedendoen
+      </div>
+      <p style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-text-tertiary)' }}>© 2026 InGoedendoen · Voor een gezond, fit en vrolijk leven.</p>
+      <div style={{ display:'flex', gap:'20px' }}>
+        {['Privacy','Contact','Over ons'].map(l => (
+          <a key={l} href="#" onClick={e=>e.preventDefault()} style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-text-secondary)', textDecoration:'none' }}>{l}</a>
+        ))}
+      </div>
+    </footer>
+  );
+}
+
+/* ── App ─────────────────────────────────────────────────── */
+function App() {
+  return (
+    <div style={{ display:'flex', flexDirection:'column', minHeight:'100vh' }}>
+      <Header />
+
+      {/* Theme title bar */}
+      <div style={{ background:'var(--color-neutral-900)', borderBottom:'1px solid rgba(255,255,255,0.07)', padding:'24px 40px 0' }}>
+        <div style={{ maxWidth:'1280px', margin:'0 auto' }}>
+          <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'20px' }}>
+            <a href="Homepage.html" style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-500)', textDecoration:'none', display:'flex', alignItems:'center', gap:'4px' }}
+              onMouseEnter={e=>e.currentTarget.style.color='var(--color-lime-400)'} onMouseLeave={e=>e.currentTarget.style.color='var(--color-neutral-500)'}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Home
+            </a>
+            <span style={{ color:'rgba(255,255,255,0.15)', fontSize:'0.75rem' }}>/</span>
+            <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-400)' }}>Thema's</span>
+            <span style={{ color:'rgba(255,255,255,0.15)', fontSize:'0.75rem' }}>/</span>
+            <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-lime-400)', fontWeight:600 }}>Voeding</span>
+          </div>
+          <div style={{ display:'flex', alignItems:'flex-end', gap:'16px', paddingBottom:'20px', borderBottom:'1px solid rgba(255,255,255,0.08)' }}>
+            <div>
+              <h1 style={{ fontFamily:'var(--font-display)', fontSize:'2.5rem', fontWeight:800, color:'#fff', letterSpacing:'-0.03em', lineHeight:1 }}>
+                Voeding
+              </h1>
+              <p style={{ fontFamily:'var(--font-sans)', fontSize:'0.9375rem', color:'rgba(255,255,255,0.5)', marginTop:'10px', maxWidth:'520px', lineHeight:1.6 }}>
+                Alles over eten, drinken en voedingsstoffen — van snelle tips tot uitgebreide achtergrondstukken.
+              </p>
+            </div>
+            <div style={{ marginLeft:'auto', flexShrink:0 }}>
+              <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', color:'var(--color-neutral-500)' }}>
+                {ARTICLES.length} artikelen
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Carousel */}
+      <Carousel items={CAROUSEL} />
+
+      {/* Main content */}
+      <main style={{ flex:1, background:'var(--color-neutral-900)' }}>
+        <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'40px 40px 64px' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 280px', gap:'0' }}>
+
+            {/* ── Article list ── */}
+            <div style={{ paddingRight:'48px', borderRight:'1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', marginBottom:'8px' }}>
+                <span className="igd-section-label-light">Artikelen over voeding</span>
+                <a href="Archive.html" style={{ fontFamily:'var(--font-sans)', fontSize:'0.8125rem', fontWeight:500, color:'var(--color-neutral-400)', textDecoration:'none', display:'flex', alignItems:'center', gap:'3px', transition:'color 150ms' }}
+                  onMouseEnter={e=>e.currentTarget.style.color='var(--color-lime-400)'} onMouseLeave={e=>e.currentTarget.style.color='var(--color-neutral-400)'}>
+                  Alle artikelen
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+              </div>
+
+              {ARTICLES.map(art => (
+                <a key={art.id} href="Blog Detail.html" className="igd-art-item">
+                  <div className="igd-art-item-thumb"><img src={art.img} alt={art.title} /></div>
+                  <div style={{ flex:1 }}>
+                    <div style={{ display:'flex', gap:'5px', alignItems:'center', marginBottom:'2px' }}>
+                      <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.5625rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--color-lime-400)' }}>Artikel</span>
+                      <span style={{ color:'rgba(255,255,255,0.2)', fontSize:'0.625rem' }}>·</span>
+                      <span style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'rgba(255,255,255,0.4)' }}>{art.readTime} min lezen</span>
+                    </div>
+                    <div className="igd-art-item-title" style={{ color:'#fff' }}>{art.title}</div>
+                    <div className="igd-art-item-excerpt" style={{ color:'rgba(255,255,255,0.5)' }}>{art.excerpt}</div>
+                    <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'rgba(255,255,255,0.35)', display:'flex', gap:'6px', alignItems:'center' }}>
+                      <span>{art.author}</span><span>·</span><span>{art.date}</span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* ── Sidebar ── */}
+            <div style={{ paddingLeft:'32px' }}>
+
+              {/* Andere thema's */}
+              <div style={{ marginBottom:'32px' }}>
+                <div style={{ marginBottom:'16px' }}>
+                  <span className="igd-section-label-light">Andere thema's</span>
+                </div>
+                <div style={{ display:'flex', flexDirection:'column', gap:'10px' }}>
+                  {OTHER_THEMES.map(t => {
+                    const [hov, setHov] = React.useState(false);
+                    return (
+                      <div key={t.id} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+                        style={{ position:'relative', height:'72px', borderRadius:'var(--radius-md)', overflow:'hidden', cursor:'pointer', transition:'transform 200ms', transform: hov?'translateY(-2px)':'none' }}>
+                        <img src={t.img} alt={t.label} style={{ width:'100%', height:'100%', objectFit:'cover' }} />
+                        <div style={{ position:'absolute', inset:0, background: hov?'rgba(0,0,0,0.45)':'rgba(0,0,0,0.55)', transition:'background 150ms' }} />
+                        <div style={{ position:'absolute', bottom:0, left:0, right:0, height:'3px', background:'var(--color-lime-400)', transform: hov?'scaleX(1)':'scaleX(0)', transition:'transform 200ms', transformOrigin:'left' }} />
+                        <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', padding:'0 14px' }}>
+                          <span style={{ fontFamily:'var(--font-display)', fontSize:'1rem', fontWeight:700, color:'#fff', letterSpacing:'-0.01em' }}>{t.label}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Populair */}
+              <div>
+                <div style={{ marginBottom:'12px' }}>
+                  <span className="igd-section-label-light">Populair</span>
+                </div>
+                {SIDEBAR_POP.map(a => (
+                  <div key={a.id} className="igd-sb-item" style={{ borderBottomColor:'rgba(255,255,255,0.08)' }}>
+                    <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.5625rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color: CAT_COLOR[a.category] }}>{a.category}</div>
+                    <div className="igd-sb-title" style={{ color:'rgba(255,255,255,0.85)' }}>{a.title}</div>
+                    <div style={{ fontFamily:'var(--font-sans)', fontSize:'0.75rem', color:'rgba(255,255,255,0.35)', marginTop:'3px' }}>{a.date} · {a.readTime} min</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

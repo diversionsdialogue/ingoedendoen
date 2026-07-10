@@ -1,0 +1,12 @@
+/* ============================================================
+   InGoedendoen Design System — Global Styles Entry Point
+   Import this single file to get all tokens + base styles.
+   DO NOT add inline rules here; use @import only.
+   ============================================================ */
+
+@import "tokens/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/effects.css";
+@import "tokens/base.css";

@@ -1,0 +1,254 @@
+[
+ {
+  "domain": "www.voedingscentrum.nl",
+  "url": "https://www.voedingscentrum.nl/professionals/kindervoeding-0-4-jaar/babyenkindervoeding/veelgestelde-vragen-en-antwoorden-van-ouders-op-het-consultatiebureau.aspx",
+  "error": "fetch failed",
+  "links": 9
+ },
+ {
+  "domain": "tinyurl.com",
+  "url": "http://tinyurl.com/og6s6yx",
+  "status": 404,
+  "links": 9
+ },
+ {
+  "domain": "aerosleepshop.nl",
+  "url": "http://aerosleepshop.nl/producten/matrastoppers-matrasbeschermers-1.html",
+  "error": "ENOTFOUND",
+  "links": 5
+ },
+ {
+  "domain": "www.aerosleepshop.nl",
+  "url": "http://www.aerosleepshop.nl",
+  "error": "ENOTFOUND",
+  "links": 3
+ },
+ {
+  "domain": "www.klamboe.info",
+  "url": "http://www.klamboe.info/",
+  "status": 404,
+  "links": 3
+ },
+ {
+  "domain": "www.letselschadeverkeer.nl",
+  "url": "https://www.letselschadeverkeer.nl/letselschade-2/",
+  "error": "UND_ERR_CONNECT_TIMEOUT",
+  "links": 3
+ },
+ {
+  "domain": "www.rehabs.com",
+  "url": "http://www.rehabs.com/explore/your-face-as-alcoholic/",
+  "status": 403,
+  "links": 2
+ },
+ {
+  "domain": "www.cbs.nl",
+  "url": "http://www.cbs.nl/nl-NL/menu/themas/gezondheid-welzijn/publicaties/artikelen/archief/2010/2010-3077-wm.htm",
+  "status": 404,
+  "links": 2
+ },
+ {
+  "domain": "www.thelancet.com",
+  "url": "http://www.thelancet.com/",
+  "status": 403,
+  "links": 2
+ },
+ {
+  "domain": "letseladvocaten.startpaginaz.nl",
+  "url": "http://letseladvocaten.startpaginaz.nl",
+  "error": "ERR_TLS_CERT_ALTNAME_INVALID",
+  "links": 1
+ },
+ {
+  "domain": "www.nierstichting.nl",
+  "url": "https://www.nierstichting.nl/zoutmeter#/",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.bmj.com",
+  "url": "http://www.bmj.com/",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.caprihr.nl",
+  "url": "http://www.caprihr.nl/nieuws/betrouwbaarheid-hartslagapps-laat-nog-te-wensen-over/",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "encyclopedie.medicinfo.nl",
+  "url": "https://encyclopedie.medicinfo.nl/de-functie-van-het-hormoonstelsel",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "werkgroepderodebril.nl",
+  "url": "http://werkgroepderodebril.nl/",
+  "error": "EAI_AGAIN",
+  "links": 1
+ },
+ {
+  "domain": "www.cardiff.ac.uk",
+  "url": "http://www.cardiff.ac.uk/",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.gsu.edu",
+  "url": "http://www.gsu.edu/",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.vovz.nl",
+  "url": "http://www.vovz.nl/index.php/165-de-bijziendheids-epidemie",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.drinksmarter.org",
+  "url": "http://www.drinksmarter.org/handy-tools/drinking-mirror-app",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "drinksmarter.org",
+  "url": "http://drinksmarter.org/handy-tools/drinking-mirror-app",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "overgangsconsulente.com",
+  "url": "http://overgangsconsulente.com/consulentes/janny-ledeboer",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "persbericht.biz",
+  "url": "http://persbericht.biz",
+  "error": "ENOTFOUND",
+  "links": 1
+ },
+ {
+  "domain": "umich.edu",
+  "url": "http://umich.edu/",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.vu.nl",
+  "url": "https://www.vu.nl/nl/index.aspx",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.dokteronline.com",
+  "url": "http://www.dokteronline.com/morning-after-pil/",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "loopgroepmaaspoort.ditismijnteam.nl",
+  "url": "http://loopgroepmaaspoort.ditismijnteam.nl/",
+  "error": "ERR_TLS_CERT_ALTNAME_INVALID",
+  "links": 1
+ },
+ {
+  "domain": "www.loopgroepleeuwarden.nl",
+  "url": "http://www.loopgroepleeuwarden.nl/",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.luchtbevochtiger.info",
+  "url": "http://www.luchtbevochtiger.info/",
+  "error": "ENOTFOUND",
+  "links": 1
+ },
+ {
+  "domain": "www.telegraaf.nl",
+  "url": "http://www.telegraaf.nl/vrouw/relatie/seks/21996040/__Vroegtijdige_zaadlozing_vaak_probleem__.html",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.holidayguru.nl",
+  "url": "https://www.holidayguru.nl/travel-magazine/beste-festivals-nederland/",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.sciencedirect.com",
+  "url": "https://www.sciencedirect.com/science/article/pii/S0002870318302710?via%3Dihub",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.thuisbezorgd.nl",
+  "url": "http://www.thuisbezorgd.nl",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "openluchtfilmfestival.nl",
+  "url": "http://openluchtfilmfestival.nl/home",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "vmj.sagepub.com",
+  "url": "http://vmj.sagepub.com/content/early/2013/03/18/1358863X13480258.full",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "www.tijdschriftvoorpsychiatrie.nl",
+  "url": "https://www.tijdschriftvoorpsychiatrie.nl/assets/articles/articles_823pdf.pdf",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.generationjourney.nl",
+  "url": "https://www.generationjourney.nl/patient-journey/",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.smarttress.com",
+  "url": "http://www.smarttress.com/en/",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.wageningenur.nl",
+  "url": "http://www.wageningenur.nl/nl/Personen/Willem-Takken.htm",
+  "error": "UND_ERR_CONNECT_TIMEOUT",
+  "links": 1
+ },
+ {
+  "domain": "www.martiniziekenhuis.nl",
+  "url": "https://www.martiniziekenhuis.nl/Bezoek-het-ziekenhuis/Afdelingen/Pijnpolikliniek/",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.schoenportaal.nl",
+  "url": "http://www.schoenportaal.nl",
+  "status": 403,
+  "links": 1
+ },
+ {
+  "domain": "marmurmedical.com",
+  "url": "http://marmurmedical.com/site/about-us/dr-ellen-marmur/",
+  "status": 404,
+  "links": 1
+ },
+ {
+  "domain": "www.psychischegezondheid.nl",
+  "url": "http://www.psychischegezondheid.nl/page/185/lichttherapie.html",
+  "status": 404,
+  "links": 1
+ }
+]
