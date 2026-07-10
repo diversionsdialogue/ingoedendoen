@@ -64,7 +64,32 @@ De site is volledig statisch (Astro, output in `site/dist`). Op Ploi:
    Zonder deze include werken de redirects ook (er staan meta-refresh-stubs in
    de build), maar 301's zijn beter voor het behoud van rankings.
 
-5. **Domein/SSL**: koppel www.ingoedendoen.nl, zet certificaat via Ploi
+5. **WebP-afbeeldingen**: alle uploads hebben een geoptimaliseerde `.webp`-variant
+   naast het origineel. Laat nginx die automatisch serveren aan browsers die het
+   ondersteunen. Zet de `map` op http-niveau (bijv. in
+   `/etc/nginx/conf.d/webp.conf` op de server):
+
+   ```nginx
+   map $http_accept $webp_suffix {
+       default "";
+       "~*webp" ".webp";
+   }
+   ```
+
+   En in het server-block van de site (Ploi → Manage → NGINX configuration):
+
+   ```nginx
+   location ~* ^/uploads/.+\.(png|jpe?g)$ {
+       add_header Vary Accept;
+       expires 30d;
+       try_files $uri$webp_suffix $uri =404;
+   }
+   ```
+
+   Zonder deze stap werkt alles ook — dan worden de (al flink verkleinde)
+   JPEG's/PNG's geserveerd.
+
+6. **Domein/SSL**: koppel www.ingoedendoen.nl, zet certificaat via Ploi
    (Let's Encrypt), en redirect apex → www (de canonical-URL's gebruiken
    `https://www.ingoedendoen.nl`).
 

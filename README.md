@@ -32,7 +32,9 @@ Met `SANITY_PROJECT_ID` in `site/.env` leest hij uit Sanity (zie `studio/README.
 ```bash
 node scripts/convert.mjs            # WXR → data/content.json, redirects, sanity-import.ndjson
 node scripts/download-images.mjs    # afbeeldingen → site/public/uploads/
+node scripts/optimize-images.mjs    # verkleinen/hercomprimeren + .webp-varianten (idempotent)
 node scripts/gen-redirects-file.mjs # data/redirects.json → site/public/_redirects
+node scripts/gen-nginx-redirects.mjs # data/redirects.json → deploy/nginx-redirects.conf
 cd site && npm run build
 node scripts/check-links.mjs        # interne dode-linkcheck op de build (exit 1 bij fouten)
 node scripts/check-links.mjs --extern   # + externe domeincheck
