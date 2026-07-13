@@ -25,7 +25,7 @@ const sideTopics = ['hartslag', 'puisten'].map((slug) => ({
 }));
 
 // Themategels: doelgroepen + dossiers
-const themaTiles = ['volwassen', 'tiener', 'senior', 'kind', 'baby']
+const themaTiles = ['volwassen', 'senior', 'hartslag', 'nagels', 'bloeddruk']
   .map((slug) => categories.find((c) => c.slug === slug))
   .filter(Boolean)
   .map((c) => ({ href: c.path, label: c.name, count: c.count, image: catImage(c.slug) }));

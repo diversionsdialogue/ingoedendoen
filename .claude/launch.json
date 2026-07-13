@@ -12,6 +12,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "site"],
       "port": 4321
+    },
+    {
+      "name": "vg-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview", "--prefix", "C:/Users/Gebruiker/projecten/code/verborgen-gebreken/site"],
+      "port": 4321
     }
   ]
 }

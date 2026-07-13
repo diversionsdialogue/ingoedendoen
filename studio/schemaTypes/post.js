@@ -18,6 +18,16 @@ const sharedFields = [
   defineField({ name: 'readingTime', title: 'Leestijd (minuten)', type: 'number' }),
   defineField({ name: 'mainImageUrl', title: 'Hoofdafbeelding (pad of URL)', type: 'string', description: 'Lokaal pad (/uploads/…) of volledige URL.' }),
   defineField({
+    name: 'mainImage',
+    title: 'Hoofdafbeelding (upload)',
+    type: 'image',
+    options: { hotspot: true },
+    description: 'Sleep hier een afbeelding naartoe of klik om te uploaden. Wordt automatisch geoptimaliseerd (WebP/AVIF + juiste maat) bij het tonen. Gebruik dit veld voor nieuwe afbeeldingen; het padveld hierboven is voor de oude, gemigreerde afbeeldingen. Staat er in beide iets, dan wint de upload.',
+    fields: [
+      defineField({ name: 'alt', title: 'Alt-tekst', type: 'string', description: 'Korte beschrijving voor toegankelijkheid en SEO.' }),
+    ],
+  }),
+  defineField({
     name: 'bodyHtml',
     title: 'Inhoud (HTML)',
     type: 'text',

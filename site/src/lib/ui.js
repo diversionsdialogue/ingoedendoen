@@ -34,15 +34,30 @@ export function primaryCat(entry, categories) {
   return first ? bySlug.get(first) : null;
 }
 
+/** Cross-pijler bruggen voor interne links (contentplan): verbind trainen↔voeding, nachtzweten↔overgang, huid↔overgang, senior↔dossiers. */
+const BRIDGES = {
+  hartslag: ['hardlopen', 'voeding-bewegen', 'bloeddruk'],
+  hardlopen: ['hartslag', 'voeding-bewegen'],
+  'voeding-bewegen': ['hartslag', 'hardlopen'],
+  nachtzweten: ['overgangsconsulente', 'bloeddruk'],
+  overgangsconsulente: ['nachtzweten', 'rimpls'],
+  rimpls: ['nagels', 'overgangsconsulente'],
+  nagels: ['rimpls'],
+  bloeddruk: ['hartslag'],
+  senior: ['hartslag', 'bloeddruk', 'nachtzweten'],
+};
+
 /** Gerelateerde artikelen voor interne linkstructuur: zelfde dossier-onderwerp eerst, dan doelgroep; gesorteerd op GSC-signaal en recentheid. */
 export function relatedPosts(entry, posts, categories, n = 3) {
   const bySlug = new Map(categories.map((c) => [c.slug, c]));
   const topics = entry.categories.filter((s) => bySlug.get(s)?.parent === 'dossier');
+  const bridges = new Set(entry.categories.flatMap((s) => BRIDGES[s] || []));
   const audiences = entry.categories.filter((s) => ['volwassen', 'tiener', 'senior', 'kind', 'baby'].includes(s));
   const score = (p) => {
     if (p.path === entry.path) return -1;
     let s = 0;
     if (topics.some((t) => p.categories.includes(t))) s += 100;
+    if (p.categories.some((c) => bridges.has(c))) s += 40;
     if (audiences.some((a) => p.categories.includes(a))) s += 10;
     if (s === 0) return -1;
     s += Math.min(20, Math.log2(1 + (p.gsc?.clicks || 0)) * 4);

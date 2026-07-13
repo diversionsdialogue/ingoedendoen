@@ -15,6 +15,16 @@ export const page = defineType({
     defineField({ name: 'metaDescription', title: 'Meta description', type: 'text', rows: 2 }),
     defineField({ name: 'readingTime', title: 'Leestijd (minuten)', type: 'number' }),
     defineField({ name: 'mainImageUrl', title: 'Hoofdafbeelding (pad of URL)', type: 'string' }),
+    defineField({
+      name: 'mainImage',
+      title: 'Hoofdafbeelding (upload)',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Upload/sleep een afbeelding; wordt automatisch geoptimaliseerd bij het tonen. Wint van het padveld hierboven.',
+      fields: [
+        defineField({ name: 'alt', title: 'Alt-tekst', type: 'string' }),
+      ],
+    }),
     defineField({ name: 'bodyHtml', title: 'Inhoud (HTML)', type: 'text', rows: 30 }),
     defineField({
       name: 'categories',

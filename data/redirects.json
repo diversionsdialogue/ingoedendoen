@@ -25,7 +25,7 @@
  },
  {
   "from": "/baby/afvallen-zwangerschap/",
-  "to": "/baby/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/volwassen/buikvet-verbranden/",
@@ -49,7 +49,7 @@
  },
  {
   "from": "/kind/peuters-fop/",
-  "to": "/kind/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/volwassen/meer-zwangerschapscomplicaties-soa/",
@@ -77,7 +77,7 @@
  },
  {
   "from": "/tiener/nieuw-expert-voeding-en-bewegen/",
-  "to": "/kind/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/volwassen/omega-3-goed-voor-je/",
@@ -101,7 +101,7 @@
  },
  {
   "from": "/kind/regelmaat-voor-kinderen-belangrijker-dan-slaapduur/",
-  "to": "/kind/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/jouw-verhaal/de-stem-als-visitekaartje/",
@@ -193,15 +193,15 @@
  },
  {
   "from": "/tiener/van-superfood-naar-gewoon-gezond/",
-  "to": "/tiener/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/tiener/tips-meer-energie/",
-  "to": "/tiener/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/tiener/afvallen-zonder-dieet/",
-  "to": "/tiener/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/volwassen/bluetooth-hartslagmeter/",
@@ -573,7 +573,7 @@
  },
  {
   "from": "/category/baby/",
-  "to": "/baby/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/category/dossier/",
@@ -593,7 +593,7 @@
  },
  {
   "from": "/category/kind/",
-  "to": "/kind/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/category/migraine/",
@@ -633,7 +633,7 @@
  },
  {
   "from": "/category/tiener/",
-  "to": "/tiener/"
+  "to": "/artikelen-overzicht/"
  },
  {
   "from": "/category/uitgelicht/",
@@ -677,6 +677,826 @@
  },
  {
   "from": "/category/vaginaal/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/buikgriep/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/gezichtsmaskers-tegen-puistjes/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/volwassen/abdominale-obesitas-iedereen-obesitas-heeft-er-last/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/seks-zonder-condoom-2/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/langdurige-oplossing-hooikoorts/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/ik-heb-last-van-een-migraine-aura/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/dossier/allergie/mogelijk-verband-hooikoorts-en-aantasting-brein/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/hormonale-migraine-dit-houdt-het-in/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/leven-koortslip/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/vaginale-klachten-misschien-ph-waarde-vagina-verstoord/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/puisten-behandeling-alle-opties-jou-rij/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/senior/heb-leesbril-nodig/",
+  "to": "/senior/"
+ },
+ {
+  "from": "/volwassen/eindelijk-rust-uv-lamp-persoonlijk-verhaal-psoriasis-patient/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/iq-verliezen-comazuipen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/stress-en-hooikoorts-slechte-combinatie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/revalideren-het-buitenland/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/pil-vergeten-wat-nu/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/chlamydia-symptomen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/vaginale-schimmelinfectie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/migraine-behandeling/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/huisstofmijt/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/vestibulaire-migraine-wat-is-het/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/acht-tips-tegen-puisten/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/volwassen/netelroos/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/pijnbehandeling-met-tens/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/droge-lucht-huis-feiten-en-fabels/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/vijf-beste-anti-kater-middelen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/ik-ben-14-mag-ik-al-fitnessen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/libido-verhogende-pepers/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/top-5-gratis-festivals-in-juni/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/de-apotheker-smeerolie-tussen-arts-en-patient/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/nick-22-viel-27-kilo-af-23-weken/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/migraine-symptomen-zo-herken-je-het/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/stijve-nek/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/feiten-fabels-ancticonceptiepil/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/koortslip-baby/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/lichttherapie-mijn-remedie-puistjes/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/middelen-puisten-helpt-echt/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/volwassen/brood-is-hartstikke-gezond/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/jetlag-symptomen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/strakke-buik-zo-krijg-hem/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/lichttherapie-gaat-giel-beelen-helpen-bij-zijn-wereldrecordpoging/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/whiplash/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/borstzelfonderzoek-hoe-doe-je-dat/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/verkoudheid-zo-kom-jij-er-snel-vanaf/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/koortslip-behandelen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/festifal-fun-blijf-fit/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/middel-tegen-hooikoorts-onverwacht-en-effectief/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/koortslip-2/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/jouw-verhaal/de-angst-om-raar-te-zijn/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/jouw-verhaal/column-eigenwijsheid-niet-altijd-wijsheid/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/5-redenen-om-de-bob-te-zijn/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/heb-ik-een-magnesiumtekort/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/allergische-reactie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/puisten-verwijderen-omdat-puistjes-liever-kwijt-bent-dan-rijk/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/baby/hoe-lang-zwanger-vind-het-antwoord-voor-je-bezoek-aan-de-verloskundige/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/tips-tegen-hoofdpijn/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/dossier/puisten/puistjes-op-kin-bestrijden/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/tiener/doen-acne/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/tiener/chlamydia-klachten-hoe-herken-je-het/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/lichttherapie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/soa-thuistest/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/cranberry-als-remedie-tegen-blaasontsteking/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/winterallergie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/gonorroe-symptomen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/kattenallergie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/peuter-wil-eten-help/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/infrarood-lamp/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/koemelkallergie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/koortslip-besmettelijk/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/pms-behandelen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/het-effect-van-alcohol-op-je-uiterlijk/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/dikke-buik-komt-vaker-vrouwen-dan-mannen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/verstopte-neus/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/puistjes-op-rug-wat-veroorzaakt-ze-en-wat-doe-je-er-aan/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/tiener/puistjes-oorzaak-en-oplossing/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/volwassen/tijdstip-invloed-op-gewicht/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/histamine/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/eczeem-baby/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/gebroken-neus/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/trichomonas-relatief-onbekende-veelvoorkomende-geslachtsziekte/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/infrarood-licht/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/zo-maak-je-het-kerstdiner-leuk-voor-kinderen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/teveel-koffie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/lichttherapie-bij-acne/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/volwassen/leven-met-migraine-doe-je-zo/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/wat-helpt-tegen-een-winterdepressie/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/als-je-baby-tandjes-krijgt/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/koffie-voor-je-vaten/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/voedselallergie-symptomen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/striae-verminderen-en-verwijderen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/dossier/allergie/berkenpollen-hooikoorts/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/vaginale-klachten/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/uitgelicht/ei-allergie/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/baby/zwangerschapsvergiftiging-of-pre-eclampsie/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/anti-kater-middel/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/uitgelicht/coeliakie/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/koortslip/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/babyweegschaal/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/soa-symptomen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/zoete-aardappelchips-gezond-snacken/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/chocolade-gezond-dit-is-waarom-2/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/meest-voorkomende-soas-nederland-top-7/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/baby/aangeboren-afwijkingen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/effect-van-alcohol/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/lekker-en-gezond-gourmetten/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/verantwoord-snoepen-sinterklaas/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/virussen-overleven-ruim-dag-op-speelgoed/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/detox-je-lichaam-tips-and-tricks/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/eczeem-wat-doe-je-er-tegen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/dossier/soa/morning-after-pil-wat-te-doen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/scrubben-tegen-puistjes/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/tiener/verantwoord-alcoholgebruik/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/anticonceptie-wat-wil-ik/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/snoozen-gezond-of-ongezond/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/koffie-is-kankerverwekkend-hete-dranken-wel/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/inhalatie-allergieen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/gevulde-omelet-een-stevige-start-van-de-dag/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/inspiratie-voor-gezonde-smoothies/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/vlinders-je-buik-bestaan-echt/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/light-kaas-niet-beter-dan-vette-kaas/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/platte-buik/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/energiek-en-gefocust-je-doelen-behalen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/schouderklachten/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/rustig-slapen-kind-jezelf/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/kind/ongelukken-huis-voorkomen/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/klamboe-voor-thuis-en-op-reis/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/meet-the-bloggers-vandaag-puur-en-lekker-leven/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/kater-voorkomen-lees-snel-de-tips/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/ontspanningsmassage-iets-voor-jou/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/de-meest-bizarre-restaurants-ter-wereld/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/achtbaanritje-helpt-mensen-van-hun-nierstenen-af/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/doorslapen-baby/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/dansen-is-goed-voor-je-gezondheid/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/zelf-afschuimend-bierglas/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/kind/traphekje-kind/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/5x-tips-tegen-een-ochtendhumeur/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/bronwater-of-kraanwater/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/gezond-zwanger-zijn/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/tens-tegen-pijn/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/ingoedendoen-ontdekt-het-stadspark-berg-bos/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/5x-tips-om-uit-de-dagelijkse-sleur-te-komen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/snel-weer-fit/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/stoppen-met-roken-doe-je-zo/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/test-en-checklist/inspiratie-voor-pensioencadeaus/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/de-personenweegschaal-van-vandaag/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/alles-puistjes/",
+  "to": "/dossier/puisten/"
+ },
+ {
+  "from": "/volwassen/de-gezichtsreinigingsborstel/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/senior/als-tanden-poetsen-een-lastige-opgave-wordt/",
+  "to": "/senior/"
+ },
+ {
+  "from": "/volwassen/avocado-wat-kun-je-ermee/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/de-make-spiegel-handig-en-veelzijdig/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/de-iwaku-een-veelzijdige-wake-light/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/schoenen-inlopen-tijd-voor-tips/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/omgaan-met-ziekte-tips-ervaringen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/koffie-ongezond-helemaal-niet/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/slowjuicer-de-voordelen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/spierpijn-gember/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/gevaren-en-voordelen-van-seks/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/smart-mirror/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/hoofdpijn/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/hoe-overleef-je-de-hitte-5-tips/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/jongeren-drinken-buiten-sporten-om-sportdrank/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/uv-lamp-atopisch-eczeem-ervaringsverhaal/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/senior/gezond-met-pensioen/",
+  "to": "/senior/"
+ },
+ {
+  "from": "/kind/samen-ziek-kind/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/gezonde-barbecue-dos-en-donts/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/haren-wassen-wat-is-het-beste/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/slecht-soa-nieuws-druiper-op-weg-naar-ongeneeslijkheid/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/senior/blaasontsteking-voorkomen/",
+  "to": "/senior/"
+ },
+ {
+  "from": "/volwassen/fabrikant-laat-mannen-vroegtijdig-zaad-lozen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/winterverkoudheid-nee-hooikoorts/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/ijstest-vlog-duurder-ook-echt-lekkerder/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/acute-verlichting-hooikoorts/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/verpakkingsvrij-winkelen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/chocolade-roept-emoties-op/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/senior/juiste-bril-kopen/",
+  "to": "/senior/"
+ },
+ {
+  "from": "/jouw-verhaal/twintig-jaar-geleden-ik-niet-bestaan/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/onderzoek-naar-eventuele-hersenbeschadiging-kopballen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/tiener/aanpassen-schooltijden-voor-pubers/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/jouw-verhaal/elke-dag-zit-de-ziekte-van-lyme-mijn-hoofd/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/ontspannend/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/schoon-en-gezond-water-komt-fles-toch/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/hartritme-bestuderen-met-een-apple-watch/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/griep-5-feiten-fabels-rij/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/ik-heb-tien-levens-een-geleefd/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/courgettespaghetti-het-gezonde-alternatief-voor-pasta/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/kleintjes-dwingen-eten-is-onverstandig/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/volwassen/daglichtlamp-ervaringsverhaal/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/te-zware-kinderen-laten-lopen-op-school/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/tijd-om-knuffelen/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/dossier/soa/canadese-onderzoekers-ontwikkelen-mogelijk-vaccin-chlamydia/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/liefde-in-tijden-van-latex-waarom-jongeren-het-condoom-af-weren/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/meet-the-bloggers-vandaag-xmmke/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/dementie-hoger-opgeleiden-kleinere-kans/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/mensen-overgewicht-meerderheid/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/matras-weet-partner-vreemdgaat/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/is-smoothie-nu-wel-gezond/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/malaria-mogelijk-roeien-muggenval/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/lopen-weer-warm-zorgverzekeraars/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/kind/kinderen-stress-zwaarder/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/kind/tablet-en-smartphone-maken-bijziend/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/volwassen/zonnebrand-bij-de-laatste-zomerzon/",
+  "to": "/volwassen/"
+ },
+ {
+  "from": "/baby/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/kind/",
+  "to": "/artikelen-overzicht/"
+ },
+ {
+  "from": "/tiener/",
   "to": "/artikelen-overzicht/"
  }
 ]

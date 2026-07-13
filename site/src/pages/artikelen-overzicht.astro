@@ -6,10 +6,10 @@ import { fmtDate, catColor, primaryCat } from '../lib/ui.js';
 const posts = await getPosts();
 const categories = await getCategories();
 
-const TABS = ['volwassen', 'tiener', 'senior', 'kind', 'baby'].map((s) => categories.find((c) => c.slug === s)).filter(Boolean);
+const TABS = ['volwassen', 'senior', 'hartslag', 'bloeddruk', 'nachtzweten'].map((s) => categories.find((c) => c.slug === s)).filter(Boolean);
 const SECTIONS = [
   ['volwassen', 'senior'],
-  ['tiener', 'jouw-verhaal'],
+  ['hartslag', 'nachtzweten'],
 ].map((col) => col.map((slug) => ({
   cat: categories.find((c) => c.slug === slug),
   items: posts.filter((p) => p.categories.includes(slug)).slice(0, 5),

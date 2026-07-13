@@ -28,7 +28,8 @@ async function loadSanity(projectId) {
     client.fetch(`*[_type == "category"]{ "slug": slug.current, title, path, "parent": parent->slug.current }`),
     client.fetch(`*[_type in ["post", "page"]]{
       _id, _type, title, "slug": slug.current, path, publishedAt, author, excerpt,
-      seoTitle, metaDescription, readingTime, featured, tags, mainImageUrl, bodyHtml,
+      seoTitle, metaDescription, readingTime, featured, tags, mainImageUrl,
+      mainImage{alt, "url": asset->url}, bodyHtml,
       "categories": categories[]->slug.current
     }`),
   ]);
@@ -42,7 +43,10 @@ async function loadSanity(projectId) {
     author: d.author,
     categories: d.categories || [],
     tags: d.tags || [],
-    image: d.mainImageUrl || null,
+    image: d.mainImage?.url
+      ? `${d.mainImage.url}?auto=format&fit=max&w=1600&q=75` // Sanity-CDN: automatisch WebP/AVIF + resize
+      : d.mainImageUrl || null,
+    imageAlt: d.mainImage?.alt || null,
     excerpt: d.excerpt || '',
     seoTitle: d.seoTitle || null,
     metaDescription: d.metaDescription || null,

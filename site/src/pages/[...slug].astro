@@ -18,6 +18,9 @@ export async function getStaticPaths() {
   for (const c of categories) {
     if (['uitgelicht', 'bol', 'uncategorized'].includes(c.slug)) continue;
     if (RESERVED.has(c.path)) continue;
+    // Lege archieven niet genereren; die zijn op host-niveau geredirect (data/redirects.json).
+    const nPosts = entries.filter((e) => e.kind === 'post' && (e.categories || []).includes(c.slug)).length;
+    if (nPosts === 0) continue;
     paths.push({ params: { slug: c.path.replace(/^\/|\/$/g, '') }, props: { view: 'category', path: c.path, catSlug: c.slug } });
   }
   return paths;
@@ -150,6 +153,11 @@ if (view === 'entry') {
             </div>
           )}
           <div class="igd-body" set:html={pageData.entry.body} />
+          {pageData.entry.kind === 'post' && (
+            <aside class="igd-disclaimer" role="note">
+              <strong>Even dit:</strong> dit artikel is met zorg samengesteld en dient ter algemene informatie — het vervangt geen persoonlijk advies van een (huis)arts. Twijfel je over je gezondheid of klachten? Bespreek het altijd met een professional. Meer weten? Lees onze <a href="/disclaimer/">disclaimer</a>.
+            </aside>
+          )}
           {pageData.entry.tags.length > 0 && (
             <div class="tags-row">
               {pageData.entry.tags.map((t) => <span class="tag-chip">{t}</span>)}
