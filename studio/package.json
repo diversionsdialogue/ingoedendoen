@@ -6,7 +6,8 @@
     "dev": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "import": "sanity dataset import ../data/sanity-import.ndjson production --replace"
+    "import": "sanity dataset import ../data/sanity-import.ndjson production --replace",
+    "prune": "sanity exec sync-prune.mjs --with-user-token"
   },
   "dependencies": {
     "react": "^18.3.1",
