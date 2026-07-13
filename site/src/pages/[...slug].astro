@@ -74,8 +74,8 @@ if (view === 'entry') {
         datePublished: entry.date,
         author: { '@type': 'Organization', name: entry.author },
         publisher: { '@type': 'Organization', name: 'InGoedendoen' },
-        image: entry.image ? 'https://www.ingoedendoen.nl' + entry.image : undefined,
-        mainEntityOfPage: 'https://www.ingoedendoen.nl' + entry.path,
+        image: entry.image ? (entry.image.startsWith('http') ? entry.image : 'https://ingoedendoen.nl' + entry.image) : undefined,
+        mainEntityOfPage: 'https://ingoedendoen.nl' + entry.path,
         inLanguage: 'nl-NL',
       }
     : null;
@@ -84,8 +84,8 @@ if (view === 'entry') {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.ingoedendoen.nl/' },
-          { '@type': 'ListItem', position: 2, name: cat.name, item: 'https://www.ingoedendoen.nl' + cat.path },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ingoedendoen.nl/' },
+          { '@type': 'ListItem', position: 2, name: cat.name, item: 'https://ingoedendoen.nl' + cat.path },
           { '@type': 'ListItem', position: 3, name: entry.title },
         ],
       }

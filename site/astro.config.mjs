@@ -7,7 +7,7 @@ const redirects = Object.fromEntries(redirectList.map((r) => [r.from.replace(/\/
 const redirectFroms = new Set(redirectList.map((r) => r.from));
 
 export default defineConfig({
-  site: 'https://www.ingoedendoen.nl',
+  site: 'https://ingoedendoen.nl',
   trailingSlash: 'always',
   build: { format: 'directory' },
   redirects,
