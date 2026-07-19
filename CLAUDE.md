@@ -7,6 +7,13 @@ Statische Astro-site (migratie vanuit WordPress), content uit **Sanity** (projec
 Belangrijk: de site leest live uit Sanity. Lokale Markdown/`data/content.json` is alleen
 een fallback als er geen `SANITY_PROJECT_ID` in `site/.env` staat.
 
+## Contentstrategie
+
+De contentsoorten en hun conversiedoel (binding via nieuwsbrief / conversie via bol /
+gezag) staan in `content-opzet.md`. Dat document bepaalt welke pagina welk doel en welke
+CTA krijgt. De uitvoering (nieuwsbrief via Mailjet of mail-MCP, `pageGoal`-veld,
+vergelijkingstabellen) is daar als "nog te bouwen" gemarkeerd.
+
 ## Bol-affiliatekoppeling (toegevoegd juli 2026)
 
 Artikelen kunnen bol-productblokken tonen. De werkwijze is bewust **API-gedreven**: je
