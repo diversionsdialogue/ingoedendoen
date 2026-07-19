@@ -57,11 +57,32 @@ spelregels staan in `bol-koppeling-plan.md`.
 
 ### Status (19 juli 2026)
 
-- Code live op `main`. Pilot-product geplaatst: **Beurer MP 62** (`bolProduct-beurer-mp62`)
-  gekoppeld aan artikel "De juiste tools voor je nagelverzorging" (`post-2277`).
-- **Openstaand:** `BOL_SITE_ID=23739` in Ploi-env zetten + deployen; dan is het eerste blok
-  live op `/volwassen/de-juiste-tools-voor-je-nagelverzorging/`. Daarna fase 2 opschalen
-  (meer beauty-/doe-artikelen), zie fasering in `bol-koppeling-plan.md`.
+- Code live op `main`. `BOL_SITE_ID=23739` staat in de Ploi-env/deploy en werkt.
+- Pilot-product live: **Beurer MP 62** (`bolProduct-beurer-mp62`) gekoppeld aan artikel
+  "De juiste tools voor je nagelverzorging" (`post-2277`), zie
+  `/volwassen/de-juiste-tools-voor-je-nagelverzorging/`.
+- **Volgende stap:** fase 2 opschalen (meer beauty-/doe-artikelen koppelen), zie fasering in
+  `bol-koppeling-plan.md`.
+
+## Content-opschoning in Sanity (19 juli 2026)
+
+Twee eenmalige opschoonacties, **rechtstreeks op de Sanity-documenten** uitgevoerd (dus in
+de live content-bron, niet in code):
+
+1. **Dubbele uitgelichte afbeelding verwijderd** uit 119 posts. Uit de WordPress-migratie
+   stond de uitgelichte afbeelding vaak óók bovenaan (of midden in) de `bodyHtml`, waardoor
+   hij twee keer verscheen. Regel: body-`<img>` waarvan de bestandsnaam (na strippen van de
+   `-BREEDTExHOOGTE`-maatsuffix) gelijk is aan de uitgelichte afbeelding → verwijderd
+   (kale img, hele `<figure>`, of hele zoom-`<a>`).
+2. **Oude affiliate-links verwijderd** uit 25 posts/pagina's (54 links, restanten van de
+   oude site: `partnerprogramma.bol.com` en `partner.bol.com`). Afbeeldingslinks helemaal
+   weg; tekstlinks uitgepakt (linktekst bleef staan). De nieuwe affiliate-links staan
+   **niet** in de content, dus alles wat in `bodyHtml` matcht is per definitie oud.
+
+⚠️ **Belangrijk bij een volledige her-import.** Deze wijzigingen staan alleen in Sanity; het
+bronbestand `data/sanity-import.ndjson` is **niet** aangepast. Draait iemand opnieuw
+`sanity dataset import ... --replace`, dan komen de dubbele afbeeldingen én de oude
+affiliate-links terug. Pas dan het bronbestand aan of draai de opschoning opnieuw.
 
 ## Handige commando's (vanuit `code/ingoedendoen`)
 
