@@ -72,6 +72,23 @@ async function getBestOffer(token, ean) {
   return res.json();
 }
 
+// ── Stap 3: productafbeelding per EAN (media-endpoint) ─────────────
+// Kiest de hoofdafbeelding (order 1) en de kleinste rendition ≥ 240px
+// (scherp in het 120px-slot op retina), anders de grootste beschikbare.
+async function getImage(token, ean) {
+  const res = await fetch(
+    `https://api.bol.com/marketing/catalog/v1/products/${ean}/media?country-code=NL`,
+    { headers: { Authorization: `Bearer ${token}`, Accept: 'application/json', 'Accept-Language': 'nl' } }
+  );
+  if (!res.ok) return null;
+  const data = await res.json();
+  const main = (data.images || []).find((i) => i.order === 1) || (data.images || [])[0];
+  if (!main) return null;
+  const rends = (main.renditions || []).slice().sort((a, b) => a.width - b.width);
+  const pick = rends.find((r) => r.width >= 240) || rends[rends.length - 1];
+  return pick ? pick.url : null;
+}
+
 // ── Sanity-helpers (rechtstreeks via HTTP API, geen extra dependency) ──
 const sanityBase = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2025-01-01/data`;
 
@@ -93,7 +110,7 @@ async function sanityPatch(id, set) {
 }
 
 // ── Hoofdprogramma ──────────────────────────────────────────────
-const products = await sanityQuery(`*[_type == "bolProduct"]{ _id, title, ean, price, available, status, productUrl }`);
+const products = await sanityQuery(`*[_type == "bolProduct"]{ _id, title, ean, price, available, status, productUrl, imageUrl }`);
 if (!products?.length) { console.log('Geen bolProduct-documenten gevonden — niets te doen.'); process.exit(0); }
 
 console.log(`${products.length} product(en) gevonden${DRY ? ' [DRY RUN — er wordt niets gewijzigd]' : ''}.\n`);
@@ -122,13 +139,20 @@ for (const p of products) {
     // Product-URL meenemen zodat de site de affiliate-link zelf kan opbouwen.
     const urlPatch = newUrl && newUrl !== p.productUrl ? { productUrl: newUrl } : {};
 
+    // Afbeelding automatisch ophalen als die nog ontbreekt (handmatige blijft staan).
+    let imgPatch = {};
+    if (!p.imageUrl) {
+      const img = await getImage(token, p.ean);
+      if (img) { imgPatch = { imageUrl: img }; console.log(`🖼  ${p.title}: afbeelding opgehaald`); }
+    }
+
     if (typeof newPrice === 'number' && newPrice !== p.price) {
       console.log(`💶 ${p.title} (${p.ean}): € ${p.price ?? '—'} → € ${newPrice}`);
-      if (!DRY) await sanityPatch(p._id, { price: newPrice, available: true, lastSynced: now, ...urlPatch });
+      if (!DRY) await sanityPatch(p._id, { price: newPrice, available: true, lastSynced: now, ...urlPatch, ...imgPatch });
       changed++;
     } else {
       console.log(`✅ ${p.title} (${p.ean}): ongewijzigd (€ ${p.price ?? '—'})`);
-      if (!DRY) await sanityPatch(p._id, { available: true, lastSynced: now, ...urlPatch });
+      if (!DRY) await sanityPatch(p._id, { available: true, lastSynced: now, ...urlPatch, ...imgPatch });
     }
 
     // Nette pauze i.v.m. rate limits

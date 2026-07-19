@@ -55,8 +55,10 @@ het redirect-doel) en genereert het Sanity-importbestand.
 - **Redirects**: 170 stuks, dubbel uitgevoerd: server-side via `site/public/_redirects`
   (Netlify-formaat) én als meta-refresh-stubs in de build (werkt op elke host).
 - **Affiliate (bol)**: de categorie `bol` is bewust buiten de migratie gehouden; de vijf
-  artikelen die erin hingen zijn behouden als gewone artikelen (zonder affiliate-blokken).
-  Het affiliate-deel wordt later opnieuw ingericht.
+  artikelen die erin hingen zijn behouden als gewone artikelen. Het affiliate-deel is
+  inmiddels opnieuw ingericht als API-gedreven productblokken (schema `bolProduct`,
+  `scripts/bol-sync.mjs`, `site/src/lib/products.js`). Werkwijze en status: zie `CLAUDE.md`
+  en `bol-koppeling-plan.md`.
 - **Uitgesloten content**: 87 posts en 56 pagina's (verouderd, promotioneel, of afhankelijk
   van Gravity Forms). Volledige lijst met redenen: `data/excluded.json`.
 - **Interne linkstructuur**: breadcrumbs + "Lees ook" (zelfde dossier/doelgroep, gewogen op

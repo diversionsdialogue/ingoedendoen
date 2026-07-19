@@ -33,7 +33,7 @@ export const bolProduct = defineType({
       type: 'url',
       description: 'Laat leeg — de site bouwt de affiliate-link automatisch uit de product-URL. Vul alleen in als je voor dit product per se een afwijkende link wilt gebruiken.',
     }),
-    defineField({ name: 'imageUrl', title: 'Afbeelding (URL)', type: 'url', description: 'Productafbeelding, bijv. van media.s-bol.com.' }),
+    defineField({ name: 'imageUrl', title: 'Afbeelding (URL)', type: 'url', description: 'Wordt automatisch opgehaald door de sync (media-endpoint). Vul alleen in als je een eigen afbeelding wilt gebruiken; dan laat de sync hem staan.' }),
     defineField({
       name: 'why',
       title: 'Waarom dit product',
