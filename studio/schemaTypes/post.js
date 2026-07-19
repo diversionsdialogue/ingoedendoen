@@ -50,6 +50,15 @@ export const post = defineType({
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'category' }] }],
     }),
+    defineField({
+      name: 'products',
+      title: 'Gekoppelde producten (bol)',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'bolProduct' }] }],
+      validation: (r) => r.max(3).error('Maximaal 3 producten per artikel (zie groeikansenplan).'),
+      description:
+        'Alleen bij doe- en beautycontent, nooit onder medische klachtpagina\'s. Plaatsing in de tekst: zet <div class="igd-product" data-ean="…"></div> in de HTML; zonder placeholder komen de blokken onderaan het artikel.',
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'path' },

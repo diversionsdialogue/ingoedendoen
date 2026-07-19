@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import { getContent, getPosts, getCategories } from '../lib/content.js';
 import { catColor, fmtDate, primaryCat, relatedPosts, popularPosts } from '../lib/ui.js';
+import { renderProductBlocks } from '../lib/products.js';
 
 export async function getStaticPaths() {
   const { entries } = await getContent();
@@ -66,6 +67,7 @@ if (view === 'entry') {
   const related = entry.kind === 'post' ? relatedPosts(entry, posts, categories, 3) : [];
   const aside = popularPosts(posts, 4, entry.path);
   const hasCalc = entry.body.includes('igd-calculator');
+  const bodyWithProducts = entry.kind === 'post' ? renderProductBlocks(entry.body, entry.products, entry.slug) : entry.body;
   const jsonLd = entry.kind === 'post'
     ? {
         '@context': 'https://schema.org',
@@ -90,7 +92,7 @@ if (view === 'entry') {
         ],
       }
     : null;
-  pageData = { entry, cat, related, aside, hasCalc, jsonLd: jsonLd && breadcrumbLd ? [jsonLd, breadcrumbLd] : jsonLd || breadcrumbLd };
+  pageData = { entry, cat, related, aside, hasCalc, bodyWithProducts, jsonLd: jsonLd && breadcrumbLd ? [jsonLd, breadcrumbLd] : jsonLd || breadcrumbLd };
 } else {
   const cat = categories.find((c) => c.slug === catSlug);
   const catPosts = posts.filter((p) => p.categories.includes(catSlug));
@@ -152,7 +154,7 @@ if (view === 'entry') {
               <img src={pageData.entry.image} alt={pageData.entry.title} width="1200" height="675" />
             </div>
           )}
-          <div class="igd-body" set:html={pageData.entry.body} />
+          <div class="igd-body" set:html={pageData.bodyWithProducts ?? pageData.entry.body} />
           {pageData.entry.kind === 'post' && (
             <aside class="igd-disclaimer" role="note">
               <strong>Even dit:</strong> dit artikel is met zorg samengesteld en dient ter algemene informatie — het vervangt geen persoonlijk advies van een (huis)arts. Twijfel je over je gezondheid of klachten? Bespreek het altijd met een professional. Meer weten? Lees onze <a href="/disclaimer/">disclaimer</a>.

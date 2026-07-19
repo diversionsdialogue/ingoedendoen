@@ -30,7 +30,8 @@ async function loadSanity(projectId) {
       _id, _type, title, "slug": slug.current, path, publishedAt, author, excerpt,
       seoTitle, metaDescription, readingTime, featured, tags, mainImageUrl,
       mainImage{alt, "url": asset->url}, bodyHtml,
-      "categories": categories[]->slug.current
+      "categories": categories[]->slug.current,
+      "products": products[]->{ title, ean, productUrl, "affiliateUrl": affiliateUrl, imageUrl, why, price, available, status }
     }`),
   ]);
   const entries = docs.map((d) => ({
@@ -53,6 +54,7 @@ async function loadSanity(projectId) {
     readingTime: d.readingTime || 3,
     featured: !!d.featured,
     body: d.bodyHtml || '',
+    products: d.products || [],
     gsc: null,
   }));
   const categories = cats.map((c) => ({

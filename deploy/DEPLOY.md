@@ -37,7 +37,12 @@ De site is volledig statisch (Astro, output in `site/dist`). Op Ploi:
    ```
    SANITY_PROJECT_ID=cf72c8od
    SANITY_DATASET=production
+   BOL_SITE_ID=23739
    ```
+
+   `BOL_SITE_ID` is je bol affiliate-SiteId; Astro bouwt hiermee bij de build de
+   affiliate-links op. Zonder deze variabele worden bol-productblokken niet
+   getoond (geen SiteId = geen commissie).
 
 3. **Deploy script**:
 
