@@ -46,7 +46,6 @@ export function productBlockHtml(p, subid) {
   const href = affiliateHref(p, subid);
   return `
 <aside class="igd-product-block" role="complementary">
-  <span class="igd-product-disclosure">Bevat affiliate-link — koop je via deze link, dan ontvangen wij een kleine commissie. Jij betaalt niets extra.</span>
   <div class="igd-product-inner">
     ${p.imageUrl ? `<div class="igd-product-img"><img src="${esc(p.imageUrl)}" alt="${esc(p.title)}" loading="lazy" width="120" height="120" /></div>` : ''}
     <div class="igd-product-info">
